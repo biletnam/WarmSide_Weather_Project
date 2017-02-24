@@ -1,73 +1,71 @@
-clear;
+﻿# Set service variables
+. .\Deploy_config.ps1;
 
-# Build sources properties
-$sourcesPath = 'C:\PowerShellBuild\Sources\'; # 'D:\WebPlayer\';
-$webSiteFolderName = 'WarmSide'; # 'WebPlayer';
+# Testing paths 
+$nugetExists = Test-Path $nugetPath;
+$msbuildExists = Test-Path $msbuildPath;
+$projectPathExists = Test-Path $projectPath;
 
-# Service variables
-$buildPath = 'C:\PowerShellBuild\Build\';
-$nugetPath = 'C:\PowerShellBuild\nuget.exe';
-$msbuildPath = 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe'
+if (!$nugetExists -or !$msbuildExists -or !$projectPathExists)
+{
+    throw [System.Exception] "Not all necessary paths exist"
+}
 
-# New site properties
-$appPoolName = $webSiteFolderName;
-$webSiteName = $webSiteFolderName;
-$webSitePath = 'C:\inetpub\wwwroot\Player';
-$webSitePort = 80;
 
-#Install-Module -Name Invoke-MsBuild -RequiredVersion 2.1.0
-
-# Copy sources to Build folder
-Copy-Item -Path "$sourcesPath*" -Destination $buildPath -recurse -Force;
-
-# Find .sln file path
-$solutionFilePath = $buildPath + $webSiteFolderName + "\" + (Get-ChildItem -Path ($buildPath + $webSiteFolderName) -Filter *.sln | Select-Object -First 1).name
+# Create or clear temp folder
+New-Item -ItemType Directory -Force -Path $tempFolder | Out-Null;
+Remove-Item ($tempFolder + "\*");
 
 # Restore Nuget packages
-& $nugetPath restore ($solutionFilePath) -noninteractive;
-
+& $nugetPath restore ($projectPath) -noninteractive;
 
 # Build solution
-& $msbuildPath $solutionFilePath;
+& $msbuildPath $projectPath /p:OutputPath=$tempFolder;
 
-#$buildSucceeded = Invoke-MsBuild -Path $solutionFilePath;
-#
-#if ($buildSucceeded)
-#{ 
-#    Write-Host "Build completed successfully."; 
-#}
-#else
-#
-#{
-#   Write-Host "Build failed. Check the build log file for errors.";
-#}
 
 # If website in IIS doesn't exist, create new one with specified parameters
 
 if ((Get-Website -Name $webSiteName) -eq $null)
 {
-    New-Item -ItemType Directory -Force -Path $webSitePath;
     Write-Host "Website doesn't exist. Creating new one...";
+
+    # Creating folder in IIS
+    New-Item -ItemType Directory -Force -Path $webSitePath;
+    
+    # Creating WebAppPool and WebSite
     New-WebAppPool $appPoolName;
     New-WebSite -Name $webSiteName -Port $webSitePort  -ApplicationPool $appPoolName -PhysicalPath $webSitePath;
-    Copy-Item -Path ($buildPath + $webSiteFolderName + "\" + $webSiteFolderName + "\*") -Destination $webSitePath -recurse -Force;
-    Restart-WebItem -PSPath "IIS:\Sites\$webSiteName";
+
+    # Deploying website
+    Copy-Item -Path ($tempFolder + "\*") -Destination $webSitePath -recurse -Force;
+
+    # Starting WebAppPool and WebSite
+    Start-WebAppPool -Name $appPoolName;
+    Start-Website -Name $webSiteName;
+
     Write-Host "Website was successfully created and deployed!";
 }
 #If website in IIS already exists, deploy new build
 else
 {
     Write-Host "Website exists";
+
+    # Stopping WebAppPool and WebSite
     Stop-Website -Name $webSiteName;
     Stop-WebAppPool -Name $appPoolName;
+
+    # Deploying WebSite
     $currentWebSitePath = (Get-Website -Name $webSiteName).physicalPath;
-    Copy-Item -Path ($buildPath + $webSiteFolderName + "\*") -Destination "$currentWebSitePath" -recurse -Force;
+    Copy-Item -Path ($tempFolder + "\*") -Destination "$currentWebSitePath" -recurse -Force;
+
+    # Starting WebAppPool and WebSite
     Start-WebAppPool -Name $appPoolName;
     Start-Website -Name $webSiteName;
+
     Write-Host "Website was successfully deployed!";
 }
 
-# Checking if site works
+# Checking if the WebSite works
 
 $HTTP_Request = [System.Net.WebRequest]::Create("http://localhost:$webSitePort")
 
