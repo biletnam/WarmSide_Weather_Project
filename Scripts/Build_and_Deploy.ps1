@@ -122,7 +122,7 @@ function StartStopWebAppPool($action, $poolName)
 			}
 			until ( (Get-WebAppPoolState -Name $poolName).Value -eq "Started" )
 	}
-	else if ($action -eq "Stop")
+	elseif ($action -eq "Stop")
 	{
 		if ( (Get-WebAppPoolState -Name $poolName).Value -eq "Stopped" )
 			{
