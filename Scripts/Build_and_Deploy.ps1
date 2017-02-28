@@ -36,7 +36,7 @@ if ((Get-Website -Name $webSiteName) -eq $null)
     New-WebSite -Name $webSiteName -Port $webSitePort  -ApplicationPool $appPoolName -PhysicalPath $webSitePath;
 
     # Deploying website
-    Copy-Item -Path ($tempFolder + "\_PublishedWebsites\" + $webSiteName") -Destination $webSitePath -recurse -Force;
+    Copy-Item -Path ($tempFolder + "\_PublishedWebsites\" + $webSiteName) -Destination $webSitePath -recurse -Force;
 
     # Starting WebAppPool and WebSite
     Start-WebAppPool -Name $appPoolName;
