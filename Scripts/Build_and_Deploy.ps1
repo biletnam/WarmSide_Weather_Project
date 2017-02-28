@@ -1,5 +1,5 @@
 ﻿# Set service variables
-. .\Deploy_config.ps1;
+. .\Scripts\Deploy_config.ps1;
 
 # Testing paths 
 $nugetExists = Test-Path $nugetPath;

@@ -3,7 +3,7 @@
 # Service variables
 $nugetPath = 'C:\PowerShellBuild\nuget.exe';
 $msbuildPath = 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe';
-$rootFolder = '..\';
+$rootFolder = ''; #..\
 $projectPath = $rootFolder + 'WarmSide\WarmSide.sln';
 $tempFolder = 'C:\PowerShellBuild\Temp';
 
