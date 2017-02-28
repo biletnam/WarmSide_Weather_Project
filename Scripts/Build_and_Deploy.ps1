@@ -22,6 +22,11 @@ Remove-Item ($tempFolder + "\*");
 # Build solution
 & $msbuildPath $projectPath /p:OutputPath=$tempFolder;
 
+Set-ExecutionPolicy unrestricted –force
+
+Import-Module WebAdministration
+
+Set-Location IIS:\
 
 # If website in IIS doesn't exist, create new one with specified parameters
 
