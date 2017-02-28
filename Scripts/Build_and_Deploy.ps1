@@ -28,7 +28,8 @@ function ValidatePaths
 # Restores Nuget packages
 function RestoreNugetPackages
 {
-	iex $nuget restore ($projectPath) -noninteractive;
+	$command = "$nuget restore ($projectPath) -noninteractive;";
+	iex "& $command";
 }
 
 # Builds solution
@@ -37,8 +38,8 @@ function Build
 	# Create or clear temp folder
 	New-Item -ItemType Directory -Force -Path $tempFolder | Out-Null;
 	Remove-Item -Path ($tempFolder + "\*") -Force;
-	
-	iex $msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath=$tempFolder ;
+	$command = "$msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath=$tempFolder;";
+	iex "& $command";
 }
 
 # Deploys project to IIS using specified parameters
