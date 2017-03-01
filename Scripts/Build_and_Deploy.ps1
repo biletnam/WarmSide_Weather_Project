@@ -36,7 +36,16 @@ function Build
 {
 	# Create or clear temp folder
 	New-Item -ItemType Directory -Force -Path $tempFolder | Out-Null;
-	Remove-Item -Path ($tempFolder + "\*") -Force;
+	
+	try
+	{
+		Remove-Item -Path ($tempFolder + "\*") -Force;
+	}
+	catch
+	{
+		
+	}
+	
 	& $msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath=$tempFolder;;
 }
 
@@ -100,6 +109,8 @@ function CheckWebSiteStatus
 
 function StartStopWebAppPool($action, $poolName)
 {
+	$counter = 0;
+	
 	if ($action -eq "Start")
 	{
 		if ( (Get-WebAppPoolState -Name $poolName).Value -eq "Started")
@@ -117,9 +128,14 @@ function StartStopWebAppPool($action, $poolName)
 			do
 			{
 				Write-Host (Get-WebAppPoolState $poolName).Value
+				$counter++; 
+				if ($counter -eq 60)
+				{
+					throw [System.Exception] "Cannot $action $poolName webAppPool!"
+				}
 				Start-Sleep -Seconds 1
 			}
-			until ( (Get-WebAppPoolState -Name $poolName).Value -eq "Started" )
+			until (((Get-WebAppPoolState -Name $poolName).Value -eq "Started"))
 	}
 	elseif ($action -eq "Stop")
 	{
@@ -138,9 +154,16 @@ function StartStopWebAppPool($action, $poolName)
 			do
 			{
 				Write-Host (Get-WebAppPoolState $poolName).Value
+				$counter++; 
+				
+				if ($counter -eq 60)
+				{
+					throw [System.Exception] "Cannot $action $poolName webAppPool!"
+				}
+				
 				Start-Sleep -Seconds 1
 			}
-			until ( (Get-WebAppPoolState -Name $poolName).Value -eq "Stopped" )
+			until ((Get-WebAppPoolState -Name $poolName).Value -eq "Stopped")
 	}
 	else
 	{
