@@ -67,7 +67,7 @@ function Deploy
 		Copy-Item -Path ($tempFolder + "\_PublishedWebsites\" + $webSiteName + "\*") -Destination $webSitePath -recurse -Force;
 
 		# Starting WebAppPool and WebSite
-		StartStopWebAppPool -action Stop -poolName $appPoolName;
+		StartStopWebAppPool -action Start -poolName $appPoolName;
 		Start-Website -Name $webSiteName;
 
 		Write-Host "Website was successfully created and deployed!";
