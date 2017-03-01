@@ -1,9 +1,9 @@
 ﻿# Initializes all variables and validates paths
+	.  .\Scripts\Deploy_config.ps1;
+
 function ValidatePaths
 {
 	# Set service variables
-	. .\Scripts\Deploy_config.ps1;
-	
 	$nugetExists = Test-Path $nuget;
 	$msbuildExists = Test-Path $msbuild;
 	$projectPathExists = Test-Path $projectPath;
@@ -28,8 +28,7 @@ function ValidatePaths
 # Restores Nuget packages
 function RestoreNugetPackages
 {
-	$command = "$nuget restore ($projectPath) -noninteractive;";
-	iex "& $command";
+	& $nuget restore ($projectPath) -noninteractive;
 }
 
 # Builds solution
@@ -38,8 +37,7 @@ function Build
 	# Create or clear temp folder
 	New-Item -ItemType Directory -Force -Path $tempFolder | Out-Null;
 	Remove-Item -Path ($tempFolder + "\*") -Force;
-	$command = "$msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath=$tempFolder;";
-	iex "& $command";
+	& $msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath=$tempFolder;;
 }
 
 # Deploys project to IIS using specified parameters
