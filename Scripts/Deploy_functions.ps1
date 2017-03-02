@@ -21,7 +21,7 @@ function Build
 	New-Item -ItemType Directory -Force -Path $buildFolder | Out-Null;
 	Remove-Item -Path ($buildFolder + "\*") -Force;
 
-	& $msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath=('..\..\' + $buildFolder);
+	& $msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath='..\..\$buildFolder';
 }
 
 # Checks if created WebSite works
