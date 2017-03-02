@@ -5,7 +5,7 @@ $nuget = 'C:\PowerShellBuild\nuget.exe';
 $msbuild = 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe';
 $rootFolder = ''; #..\
 $projectPath = $rootFolder + 'WarmSide\WarmSide.sln';
-$tempFolder = 'C:\PowerShellBuild\Temp';
+$buildFolder = $rootFolder + 'Publish';
 
 # New site properties
 $appPoolName = "WarmSide";
