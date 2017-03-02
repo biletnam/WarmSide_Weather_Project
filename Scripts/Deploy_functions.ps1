@@ -21,7 +21,7 @@ function Build
 	New-Item -ItemType Directory -Force -Path $buildFolder | Out-Null;
 	Remove-Item -Path ($buildFolder + "\*") -Force;
 
-	& $msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath=$buildFolder;;
+	& $msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath=$buildFolder;
 }
 
 # Checks if created WebSite works
@@ -50,7 +50,7 @@ function Deploy
 		# Creating WebAppPool and WebSite
 		New-WebAppPool $appPoolName;
 		New-WebSite -Name $webSiteName -Port $webSitePort  -ApplicationPool $appPoolName -PhysicalPath $webSitePath;
-
+        Set-Location '..\..\'
 		# Deploying website
 		Copy-Item -Path ($buildFolder + "\_PublishedWebsites\" + $webSiteName + "\*") -Destination $webSitePath -recurse -Force;
 
