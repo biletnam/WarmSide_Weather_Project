@@ -156,17 +156,17 @@ function StartStopWebAppPool($action, $poolName)
 # Tests project and tools paths
 function ValidatePaths
 {
-	if (Test-Path $nuget)
+	if (!(Test-Path $nuget))
 	{
 		throw [System.Exception] "Nuget application does not exist on the specified path: $nuget"
 	}
 
-	if (Test-Path $msbuild)
+	if (!(Test-Path $msbuild))
 	{
 		throw [System.Exception] "MSBuild application does not exist on the specified path: $msbuild"
 	}
 
-	if (Test-Path $projectPath)
+	if (!(Test-Path $projectPath))
 	{
 		throw [System.Exception] "Target project does not exist on the specified path: $projectPath"
 	}
