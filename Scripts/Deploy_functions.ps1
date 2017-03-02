@@ -50,7 +50,6 @@ function Deploy
 		# Creating WebAppPool and WebSite
 		New-WebAppPool $appPoolName;
 		New-WebSite -Name $webSiteName -Port $webSitePort  -ApplicationPool $appPoolName -PhysicalPath $webSitePath;
-        Set-Location '..\..\'
 		# Deploying website
 		Copy-Item -Path ($buildFolder + "\_PublishedWebsites\" + $webSiteName + "\*") -Destination $webSitePath -recurse -Force;
 
