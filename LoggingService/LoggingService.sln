@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingService.WCFService", "LoggingService.WCFService\LoggingService.WCFService.csproj", "{17C05A00-8FD4-4A42-B5C7-08C48028F0EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingService.WindowsServiceHost", "LoggingService.WindowsServiceHost\LoggingService.WindowsServiceHost.csproj", "{C70840BB-A015-4006-921A-158CDD8FF09E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17C05A00-8FD4-4A42-B5C7-08C48028F0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17C05A00-8FD4-4A42-B5C7-08C48028F0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17C05A00-8FD4-4A42-B5C7-08C48028F0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17C05A00-8FD4-4A42-B5C7-08C48028F0EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C70840BB-A015-4006-921A-158CDD8FF09E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C70840BB-A015-4006-921A-158CDD8FF09E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C70840BB-A015-4006-921A-158CDD8FF09E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C70840BB-A015-4006-921A-158CDD8FF09E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
