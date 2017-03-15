@@ -1,5 +1,6 @@
-﻿$ErrorActionPreference = Stop;
+﻿$ErrorActionPreference = 'Stop';
 
+Write-Host $PSScriptRoot
 # Variables initialization
 if($args[0] -eq 'PROD')
 {
