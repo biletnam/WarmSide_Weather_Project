@@ -16,7 +16,7 @@ namespace LoggingService.WindowsServiceHost
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new LoggingWindowsService()
             };
             ServiceBase.Run(ServicesToRun);
         }

@@ -1,6 +1,6 @@
 ﻿namespace LoggingService.WindowsServiceHost
 {
-    partial class Service1
+    partial class LoggingWindowsService
     {
         /// <summary> 
         /// Required designer variable.

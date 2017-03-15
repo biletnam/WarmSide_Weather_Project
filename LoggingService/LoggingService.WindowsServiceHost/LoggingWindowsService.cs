@@ -9,9 +9,9 @@ using System.Text;
 
 namespace LoggingService.WindowsServiceHost
 {
-    public partial class Service1 : ServiceBase
+    public partial class LoggingWindowsService : ServiceBase
     {
-        public Service1()
+        public LoggingWindowsService()
         {
             InitializeComponent();
         }
