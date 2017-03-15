@@ -11,6 +11,6 @@ $buildFolder = $rootFolder + 'Publish';
 $appPoolName = "WarmSide";
 $webSiteName = "WarmSide";
 $webSitePath = 'C:\inetpub\wwwroot\WarmSide';
-$webSitePort = 88;
+$webSitePort = 86;
 
 Write-Host "Variables were set"

@@ -22,6 +22,11 @@ function Build
 	Remove-Item -Path ($buildFolder + "\*") -Recurse;
 
 	& $msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath="..\..\$buildFolder";
+	if($LastExitCode -ne 0)
+	{
+		throw [System.Exception] "Build failed."
+	}
+	
 }
 
 # Checks if created WebSite works
