@@ -9,12 +9,7 @@ namespace LoggingService.WindowsServiceHost
     {
         public static void Main()
         {
-            WCFLoggingService logger = new WCFLoggingService();
-            logger.StartWCFLogger();
-            Console.WriteLine("Logging service has successfully started!");
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
-            logger.StopWCFLogger();
+            RunConsoleAppHost();
         }
 
         public static void RunWindowsServiceHost()
@@ -25,6 +20,15 @@ namespace LoggingService.WindowsServiceHost
                 new LoggingWindowsService()
             };
             ServiceBase.Run(ServicesToRun);
+        }
+        public static void RunConsoleAppHost()
+        {
+            WCFLoggingService logger = new WCFLoggingService();
+            logger.StartWCFLogger();
+            Console.WriteLine("Logging service has successfully started!");
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+            logger.StopWCFLogger();
         }
     }
 }
