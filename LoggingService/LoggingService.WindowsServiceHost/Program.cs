@@ -1,14 +1,23 @@
-﻿using System.ServiceProcess;
+﻿using System;
+using System.ServiceProcess;
+using LoggingService.WCFService;
 
 
 namespace LoggingService.WindowsServiceHost
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        static void Main()
+        public static void Main()
+        {
+            WCFLoggingService logger = new WCFLoggingService();
+            logger.StartWCFLogger();
+            Console.WriteLine("Logging service has successfully started!");
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+            logger.StopWCFLogger();
+        }
+
+        public static void RunWindowsServiceHost()
         {
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]

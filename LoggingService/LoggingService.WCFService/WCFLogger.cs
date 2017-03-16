@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
+using Serilog;
 
 namespace LoggingService.WCFService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
-    public class Service1 : IService1
+    public class WCFLogger : IWCFLogger
     {
-        public string GetData(int value)
+        public bool Log(string message)
         {
-            return string.Format("You entered: {0}", value);
+            var logToConsole = new LoggerConfiguration().WriteTo.LiterateConsole(Serilog.Events.LogEventLevel.Information).CreateLogger();
+            var logToFile = new LoggerConfiguration().ReadFrom.AppSettings().WriteTo.File("").CreateLogger();
+            logToConsole.Information(message);
+            logToFile.Information(message);
+            return false;
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
