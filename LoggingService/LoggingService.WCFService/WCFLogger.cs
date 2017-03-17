@@ -12,12 +12,12 @@ namespace LoggingService.WCFService
         public WCFLogger()
         {
             logToConsole = new LoggerConfiguration().WriteTo.LiterateConsole().CreateLogger();
-            logToFile = new LoggerConfiguration().ReadFrom.AppSettings().WriteTo.File("", buffered:true).CreateLogger();
+            logToFile = new LoggerConfiguration().WriteTo.File("", shared:true).CreateLogger();
         }
 
         public void LogError(string appName, string message)
         {
-            logToConsole.Error($"{appName}: {message}");
+            logToConsole.Error($"{appName}: {message}"); 
             logToFile.Error($"{appName}: {message}");
         }
 
