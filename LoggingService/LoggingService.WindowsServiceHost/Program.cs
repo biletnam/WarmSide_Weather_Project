@@ -9,7 +9,7 @@ namespace LoggingService.WindowsServiceHost
     {
         public static void Main()
         {
-            RunConsoleAppHost();
+            RunWindowsServiceHost();
         }
 
         public static void RunWindowsServiceHost()

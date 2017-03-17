@@ -3,14 +3,13 @@ using LoggingService.WCFService;
 
 namespace LoggingService.WindowsServiceHost
 {
-    public class LoggingWindowsService : ServiceBase
+    partial class LoggingWindowsService : ServiceBase
     {
         WCFLoggingService logger;
-
         public LoggingWindowsService()
         {
+            InitializeComponent();
             logger = new WCFLoggingService();
-            this.ServiceName = "LoggingService";
         }
 
         protected override void OnStart(string[] args)
