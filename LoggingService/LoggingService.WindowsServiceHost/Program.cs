@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceProcess;
 using LoggingService.WCFService;
-
+using System.Security.Principal;
 
 namespace LoggingService.WindowsServiceHost
 {
@@ -9,7 +9,14 @@ namespace LoggingService.WindowsServiceHost
     {
         public static void Main()
         {
-            RunWindowsServiceHost();
+            if (WindowsIdentity.GetCurrent().IsSystem)
+            {
+                RunWindowsServiceHost();
+            }
+            else
+            {
+                RunConsoleAppHost();
+            }
         }
 
         public static void RunWindowsServiceHost()

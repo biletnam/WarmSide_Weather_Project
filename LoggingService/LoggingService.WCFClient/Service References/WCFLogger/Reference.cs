@@ -9,80 +9,23 @@
 //------------------------------------------------------------------------------
 
 namespace LoggingService.WCFClient.WCFLogger {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/LoggingService.WCFService")]
-    [System.SerializableAttribute()]
-    public partial class CompositeType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool BoolValueField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StringValueField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool BoolValue {
-            get {
-                return this.BoolValueField;
-            }
-            set {
-                if ((this.BoolValueField.Equals(value) != true)) {
-                    this.BoolValueField = value;
-                    this.RaisePropertyChanged("BoolValue");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StringValue {
-            get {
-                return this.StringValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StringValueField, value) != true)) {
-                    this.StringValueField = value;
-                    this.RaisePropertyChanged("StringValue");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WCFLogger.IWCFLogger")]
     public interface IWCFLogger {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFLogger/Log", ReplyAction="http://tempuri.org/IWCFLogger/LogResponse")]
-        bool Log(string message);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFLogger/LogInfo", ReplyAction="http://tempuri.org/IWCFLogger/LogInfoResponse")]
+        void LogInfo(string appName, string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFLogger/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IWCFLogger/GetDataUsingDataContractResponse")]
-        LoggingService.WCFClient.WCFLogger.CompositeType GetDataUsingDataContract(LoggingService.WCFClient.WCFLogger.CompositeType composite);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFLogger/LogError", ReplyAction="http://tempuri.org/IWCFLogger/LogErrorResponse")]
+        void LogError(string appName, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFLogger/LogWarning", ReplyAction="http://tempuri.org/IWCFLogger/LogWarningResponse")]
+        void LogWarning(string appName, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFLogger/LogErrorWithException", ReplyAction="http://tempuri.org/IWCFLogger/LogErrorWithExceptionResponse")]
+        void LogErrorWithException(string appName, string message, System.Exception ex);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -112,12 +55,20 @@ namespace LoggingService.WCFClient.WCFLogger {
                 base(binding, remoteAddress) {
         }
         
-        public bool Log(string message) {
-            return base.Channel.Log(message);
+        public void LogInfo(string appName, string message) {
+            base.Channel.LogInfo(appName, message);
         }
         
-        public LoggingService.WCFClient.WCFLogger.CompositeType GetDataUsingDataContract(LoggingService.WCFClient.WCFLogger.CompositeType composite) {
-            return base.Channel.GetDataUsingDataContract(composite);
+        public void LogError(string appName, string message) {
+            base.Channel.LogError(appName, message);
+        }
+        
+        public void LogWarning(string appName, string message) {
+            base.Channel.LogWarning(appName, message);
+        }
+        
+        public void LogErrorWithException(string appName, string message, System.Exception ex) {
+            base.Channel.LogErrorWithException(appName, message, ex);
         }
     }
 }

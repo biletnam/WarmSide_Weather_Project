@@ -8,29 +8,41 @@ namespace LoggingService.WCFService
     public interface IWCFLogger
     {
         [OperationContract]
-        bool Log(string message);
+        void LogInfo(string appName, string message);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        void LogError(string appName, string message);
+
+        [OperationContract]
+        void LogWarning(string appName, string message);
+
+        [OperationContract]
+        void LogErrorWithException(string appName, string message, Exception ex);
     }
     [DataContract]
-    public class CompositeType
+    public class ExceptionError
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        string message = "";
+        Exception exception;
 
-        [DataMember]
-        public bool BoolValue
+        public ExceptionError(string message, Exception ex)
         {
-            get { return boolValue; }
-            set { boolValue = value; }
+            Message = message;
+            exception = ex;
         }
 
         [DataMember]
-        public string StringValue
+        public string Message
         {
-            get { return stringValue; }
-            set { stringValue = value; }
+            get { return message; }
+            set { message = value; }
+        }
+
+        [DataMember]
+        public Exception Exception
+        {
+            get { return exception; }
+            set { exception = value; }
         }
     }
 }

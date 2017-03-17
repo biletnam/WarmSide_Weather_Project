@@ -1,17 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ServiceModel;
 
 namespace LoggingService.WCFClient
 {
     public class WCFLoggingClient
     {
-        public static void Log(string message)
+        public static void LogInfo(string appName, string message)
         {
             WCFLogger.WCFLoggerClient logger = new WCFLogger.WCFLoggerClient();
-            logger.Log(message);
+            logger.LogInfo(appName, message);
+        }
+
+        public static void LogWarning(string appName, string message)
+        {
+            WCFLogger.WCFLoggerClient logger = new WCFLogger.WCFLoggerClient();
+            logger.LogWarning(appName, message);
+        }
+
+        public static void LogError(string appName, string message)
+        {
+            WCFLogger.WCFLoggerClient logger = new WCFLogger.WCFLoggerClient();
+            logger.LogError(appName, message);
+        }
+
+        public static void LogErrorWithException(string appName, string message, Exception ex)
+        {
+            WCFLogger.WCFLoggerClient logger = new WCFLogger.WCFLoggerClient();
+            logger.LogErrorWithException(appName, message, ex);
         }
     }
 }

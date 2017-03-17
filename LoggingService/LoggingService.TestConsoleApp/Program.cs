@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace LoggingService.TestConsoleApp
 {
@@ -12,7 +13,22 @@ namespace LoggingService.TestConsoleApp
 
             while (input != "EXIT")
             {
-                WCFClient.WCFLoggingClient.Log(input);
+                WCFClient.WCFLoggingClient.LogInfo("TestConsoleApp", input);
+                Thread.Sleep(200);
+                WCFClient.WCFLoggingClient.LogWarning("TestConsoleApp", input);
+                Thread.Sleep(200);
+                WCFClient.WCFLoggingClient.LogError("TestConsoleApp", input);
+                Thread.Sleep(200);
+
+                try
+                {
+                    throw new Exception();
+                }
+                catch (Exception ex)
+                {
+                    WCFClient.WCFLoggingClient.LogErrorWithException("TestConsoleApp", input, ex);
+                }
+               
                 input = Console.ReadLine();
             }
         }

@@ -63,9 +63,6 @@
     <None Include="Service References\WCFLogger\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCFLogger\LoggingService.WCFClient.WCFLogger.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\WCFLogger\WCFLogger.wsdl" />
   </ItemGroup>
   <ItemGroup>

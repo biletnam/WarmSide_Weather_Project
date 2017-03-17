@@ -4,35 +4,55 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8733/WCFLogger/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8733/WCFLogger/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8733/WCFLogger/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LoggingService.WCFService" />
+      <xsd:import schemaLocation="http://localhost:8733/WCFLogger/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IWCFLogger_Log_InputMessage">
-    <wsdl:part name="parameters" element="tns:Log" />
+  <wsdl:message name="IWCFLogger_LogInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogInfo" />
   </wsdl:message>
-  <wsdl:message name="IWCFLogger_Log_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LogResponse" />
+  <wsdl:message name="IWCFLogger_LogInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogInfoResponse" />
   </wsdl:message>
-  <wsdl:message name="IWCFLogger_GetDataUsingDataContract_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  <wsdl:message name="IWCFLogger_LogError_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogError" />
   </wsdl:message>
-  <wsdl:message name="IWCFLogger_GetDataUsingDataContract_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  <wsdl:message name="IWCFLogger_LogError_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWCFLogger_LogWarning_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogWarning" />
+  </wsdl:message>
+  <wsdl:message name="IWCFLogger_LogWarning_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogWarningResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWCFLogger_LogErrorWithException_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogErrorWithException" />
+  </wsdl:message>
+  <wsdl:message name="IWCFLogger_LogErrorWithException_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogErrorWithExceptionResponse" />
   </wsdl:message>
   <wsdl:portType name="IWCFLogger">
-    <wsdl:operation name="Log">
-      <wsdl:input wsaw:Action="http://tempuri.org/IWCFLogger/Log" message="tns:IWCFLogger_Log_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IWCFLogger/LogResponse" message="tns:IWCFLogger_Log_OutputMessage" />
+    <wsdl:operation name="LogInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFLogger/LogInfo" message="tns:IWCFLogger_LogInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFLogger/LogInfoResponse" message="tns:IWCFLogger_LogInfo_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <wsdl:input wsaw:Action="http://tempuri.org/IWCFLogger/GetDataUsingDataContract" message="tns:IWCFLogger_GetDataUsingDataContract_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IWCFLogger/GetDataUsingDataContractResponse" message="tns:IWCFLogger_GetDataUsingDataContract_OutputMessage" />
+    <wsdl:operation name="LogError">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFLogger/LogError" message="tns:IWCFLogger_LogError_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFLogger/LogErrorResponse" message="tns:IWCFLogger_LogError_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogWarning">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFLogger/LogWarning" message="tns:IWCFLogger_LogWarning_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFLogger/LogWarningResponse" message="tns:IWCFLogger_LogWarning_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogErrorWithException">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFLogger/LogErrorWithException" message="tns:IWCFLogger_LogErrorWithException_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFLogger/LogErrorWithExceptionResponse" message="tns:IWCFLogger_LogErrorWithException_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IWCFLogger" type="tns:IWCFLogger">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="Log">
-      <soap:operation soapAction="http://tempuri.org/IWCFLogger/Log" style="document" />
+    <wsdl:operation name="LogInfo">
+      <soap:operation soapAction="http://tempuri.org/IWCFLogger/LogInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -40,8 +60,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <soap:operation soapAction="http://tempuri.org/IWCFLogger/GetDataUsingDataContract" style="document" />
+    <wsdl:operation name="LogError">
+      <soap:operation soapAction="http://tempuri.org/IWCFLogger/LogError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogWarning">
+      <soap:operation soapAction="http://tempuri.org/IWCFLogger/LogWarning" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogErrorWithException">
+      <soap:operation soapAction="http://tempuri.org/IWCFLogger/LogErrorWithException" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

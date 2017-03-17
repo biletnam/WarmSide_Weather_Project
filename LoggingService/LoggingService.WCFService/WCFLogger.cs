@@ -1,30 +1,47 @@
 ﻿using System;
 using Serilog;
+using Serilog.Core;
 
 namespace LoggingService.WCFService
 {
     public class WCFLogger : IWCFLogger
     {
-        public bool Log(string message)
+        Logger logToConsole;
+        Logger logToFile;
+
+        public WCFLogger()
         {
-            var logToConsole = new LoggerConfiguration().WriteTo.LiterateConsole(Serilog.Events.LogEventLevel.Information).CreateLogger();
-            var logToFile = new LoggerConfiguration().ReadFrom.AppSettings().WriteTo.File("").CreateLogger();
-            logToConsole.Information(message);
-            logToFile.Information(message);
-            return false;
+            logToConsole = new LoggerConfiguration().WriteTo.LiterateConsole().CreateLogger();
+            logToFile = new LoggerConfiguration().ReadFrom.AppSettings().WriteTo.File("", buffered:true).CreateLogger();
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public void LogError(string appName, string message)
         {
-            if (composite == null)
+            logToConsole.Error($"{appName}: {message}");
+            logToFile.Error($"{appName}: {message}");
+        }
+
+        public void LogWarning(string appName, string message)
+        {
+            logToConsole.Warning($"{appName}: {message}");
+            logToFile.Warning($"{appName}: {message}");
+        }
+
+        public void LogInfo(string appName, string message)
+        {
+            logToConsole.Information($"{appName}: {message}");
+            logToFile.Information($"{appName}: {message}");
+        }
+
+        public void LogErrorWithException(string appName, string message, Exception ex)
+        {
+            if (ex == null)
             {
-                throw new ArgumentNullException("composite");
+                throw new ArgumentNullException("exceptionError is null");
             }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+
+            logToConsole.Error($"{appName}: {message}, Exception message: {ex.Message} Stack trace: {ex.StackTrace}");
+            logToFile.Error($"{appName}: {message}, Exception message: {ex.Message} Stack trace: {ex.StackTrace}");
         }
     }
 }
