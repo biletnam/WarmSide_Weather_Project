@@ -7,6 +7,7 @@ namespace LoggingService.TestConsoleApp
     {
         static void Main(string[] args)
         {
+            Console.Title = "WCF Logger Testing Console App";
             Console.WriteLine("This is the application for testing WCF logging service");
             Console.WriteLine("Please, type message you want to log. Type EXIT to close the app.");
             string input = Console.ReadLine();
@@ -14,11 +15,8 @@ namespace LoggingService.TestConsoleApp
             while (input != "EXIT")
             {
                 WCFClient.WCFLoggingClient.LogInfo("TestConsoleApp", input);
-                Thread.Sleep(200);
                 WCFClient.WCFLoggingClient.LogWarning("TestConsoleApp", input);
-                Thread.Sleep(200);
                 WCFClient.WCFLoggingClient.LogError("TestConsoleApp", input);
-                Thread.Sleep(200);
 
                 try
                 {

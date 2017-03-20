@@ -30,6 +30,7 @@ namespace LoggingService.WindowsServiceHost
         }
         public static void RunConsoleAppHost()
         {
+            Console.Title = "Loggin Service Console Host";
             WCFLoggingService logger = new WCFLoggingService();
             logger.StartWCFLogger();
             Console.WriteLine("Logging service has successfully started!");

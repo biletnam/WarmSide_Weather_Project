@@ -6,13 +6,13 @@ namespace LoggingService.WCFService
 {
     public class WCFLogger : IWCFLogger
     {
-        Logger logToConsole;
-        Logger logToFile;
+        static Logger logToConsole;
+        static Logger logToFile;
 
-        public WCFLogger()
+        static  WCFLogger()
         {
             logToConsole = new LoggerConfiguration().WriteTo.LiterateConsole().CreateLogger();
-            logToFile = new LoggerConfiguration().WriteTo.File("", shared:true).CreateLogger();
+            logToFile = new LoggerConfiguration().ReadFrom.AppSettings().WriteTo.File("").CreateLogger();
         }
 
         public void LogError(string appName, string message)
