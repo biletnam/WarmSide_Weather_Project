@@ -9,13 +9,13 @@ namespace LoggingService.WindowsServiceHost
     {
         public static void Main()
         {
-            if (WindowsIdentity.GetCurrent().IsSystem)
+            if (Environment.UserInteractive)
             {
-                RunWindowsServiceHost();
+                RunConsoleAppHost();
             }
             else
             {
-                RunConsoleAppHost();
+                RunWindowsServiceHost();
             }
         }
 
