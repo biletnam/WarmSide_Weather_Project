@@ -54,22 +54,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Service References\WCFLogger\item.xsd">
+    <None Include="Service References\WCFLogger\service.wsdl" />
+    <None Include="Service References\WCFLogger\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCFLogger\item1.xsd">
+    <None Include="Service References\WCFLogger\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCFLogger\item2.xsd">
+    <None Include="Service References\WCFLogger\System.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCFLogger\WCFLogger.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\WCFLogger\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\WCFLogger\item.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WCFLogger\configuration91.svcinfo" />

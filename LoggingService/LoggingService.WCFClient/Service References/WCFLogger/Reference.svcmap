@@ -18,14 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8733/WCFLogger/" Protocol="http" SourceId="1" />
+    <MetadataSource Address="net.pipe://localhost/WCFLogger/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="4eb8f086-eb15-4831-aa30-eea0d8efe4d1" SourceId="1" SourceUrl="http://localhost:8733/WCFLogger/?disco" />
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="95590151-de00-4c44-bed6-d251dfe40ff2" SourceId="1" SourceUrl="http://localhost:8733/WCFLogger/?xsd=xsd0" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="606d3bf4-af76-44b8-9cda-ae13afffdc6f" SourceId="1" SourceUrl="http://localhost:8733/WCFLogger/?xsd=xsd2" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="3615e71b-6af0-4cc4-b944-b090efd603b0" SourceId="1" SourceUrl="http://localhost:8733/WCFLogger/?xsd=xsd1" />
-    <MetadataFile FileName="WCFLogger.wsdl" MetadataType="Wsdl" ID="194bb15b-7dff-41f5-a506-a50cc9398940" SourceId="1" SourceUrl="http://localhost:8733/WCFLogger/?wsdl" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="2b269c51-1c3f-451a-98b3-33b3fdcea9cd" SourceId="1" SourceUrl="net.pipe://localhost/WCFLogger/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="1f31c36b-0aad-4a80-a54f-dc33dee05142" SourceId="1" SourceUrl="net.pipe://localhost/WCFLogger/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="302ea3c2-7098-48ab-9b65-0416e2933bdc" SourceId="1" SourceUrl="net.pipe://localhost/WCFLogger/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="90c4b7fc-1846-4ac6-9898-b0e687a0c9d4" SourceId="1" SourceUrl="net.pipe://localhost/WCFLogger/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
