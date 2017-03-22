@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ServiceModel;
+using LoggingService.WCFService.LogServices;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Practices.Unity;
 
 namespace LoggingService.WCFService
 {
@@ -12,7 +14,9 @@ namespace LoggingService.WCFService
 
         public WCFLoggingService()
         {
-            wcfLogger = new ServiceHost(typeof(WCFLogger));
+            Config.Initialize();
+            WCFLogger wcfLoggerInstance = new WCFLogger(Config.UnityContainer.Resolve<ILoggingProvider>());
+            wcfLogger = new ServiceHost(wcfLoggerInstance);
         }
         public void StartWCFLogger()
         {

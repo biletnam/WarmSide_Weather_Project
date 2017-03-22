@@ -1,47 +1,74 @@
 ﻿using System;
-using Serilog;
-using Serilog.Core;
+using LoggingService.WCFService.LogServices;
+using System.ServiceModel;
 
 namespace LoggingService.WCFService
 {
+    [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single)]
     public class WCFLogger : IWCFLogger
     {
-        static Logger logToConsole;
-        static Logger logToFile;
+        private ILoggingProvider _logger;
 
-        static  WCFLogger()
+        public WCFLogger(ILoggingProvider logger)
         {
-            logToConsole = new LoggerConfiguration().WriteTo.LiterateConsole().CreateLogger();
-            logToFile = new LoggerConfiguration().ReadFrom.AppSettings().WriteTo.File("").CreateLogger();
+            _logger = logger;
         }
 
         public void LogError(string appName, string message)
         {
-            logToConsole.Error($"{appName}: {message}"); 
-            logToFile.Error($"{appName}: {message}");
+            try
+            {
+                _logger.LogToConsole(MessageType.Error, appName, message);
+                _logger.LogToFile(MessageType.Error, appName, message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occured when writing log: {ex.Message}");
+            }
         }
 
         public void LogWarning(string appName, string message)
         {
-            logToConsole.Warning($"{appName}: {message}");
-            logToFile.Warning($"{appName}: {message}");
+            try
+            {
+                _logger.LogToConsole(MessageType.Warning, appName, message);
+                _logger.LogToFile(MessageType.Warning, appName, message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occured when writing log: {ex.Message}");
+            }
         }
 
         public void LogInfo(string appName, string message)
         {
-            logToConsole.Information($"{appName}: {message}");
-            logToFile.Information($"{appName}: {message}");
+            try
+            {
+                _logger.LogToConsole(MessageType.Info, appName, message);
+                _logger.LogToFile(MessageType.Info, appName, message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occured when writing log: {ex.Message}");
+            }
         }
 
-        public void LogErrorWithException(string appName, string message, Exception ex)
+        public void LogErrorWithException(string appName, string message, Exception exception)
         {
-            if (ex == null)
+            if (exception == null)
             {
                 throw new ArgumentNullException("exceptionError is null");
             }
 
-            logToConsole.Error($"{appName}: {message}, Exception message: {ex.Message} Stack trace: {ex.StackTrace}");
-            logToFile.Error($"{appName}: {message}, Exception message: {ex.Message} Stack trace: {ex.StackTrace}");
+            try
+            {
+                _logger.LogToConsole(MessageType.Error, appName, $"{message}, Exception message: {exception.Message} Stack trace: {exception.StackTrace}");
+                _logger.LogToFile(MessageType.Error, appName, $"{message}, Exception message: {exception.Message} Stack trace: {exception.StackTrace}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occured when writing log: {ex.Message}");
+            }
         }
     }
 }
