@@ -5,7 +5,8 @@ namespace LoggingService.WindowsServiceHost
 {
     partial class LoggingWindowsService : ServiceBase
     {
-        WCFLoggingService logger;
+        private readonly WCFLoggingService logger;
+
         public LoggingWindowsService()
         {
             InitializeComponent();
@@ -14,12 +15,12 @@ namespace LoggingService.WindowsServiceHost
 
         protected override void OnStart(string[] args)
         {
-            logger.StartWCFLogger();
+            logger.Start();
         }
 
         protected override void OnStop()
         {
-            logger.StopWCFLogger();
+            logger.Stop();
         }
     }
 }

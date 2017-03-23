@@ -7,7 +7,7 @@ namespace LoggingService.WCFService
     [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single)]
     public class WCFLogger : IWCFLogger
     {
-        private ILoggingProvider _logger;
+        private readonly ILoggingProvider _logger;
 
         public WCFLogger(ILoggingProvider logger)
         {
@@ -18,12 +18,11 @@ namespace LoggingService.WCFService
         {
             try
             {
-                _logger.LogToConsole(MessageType.Error, appName, message);
-                _logger.LogToFile(MessageType.Error, appName, message);
+                _logger.Log(MessageType.Error, appName, message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(string.Format("Error occured when writing log: {0}", ex.Message));
+                Console.WriteLine($"Error occured when writing log: {ex.Message}");
             }
         }
 
@@ -31,12 +30,11 @@ namespace LoggingService.WCFService
         {
             try
             {
-                _logger.LogToConsole(MessageType.Warning, appName, message);
-                _logger.LogToFile(MessageType.Warning, appName, message);
+                _logger.Log(MessageType.Warning, appName, message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(string.Format("Error occured when writing log: {0}", ex.Message));
+                Console.WriteLine($"Error occured when writing log: {ex.Message}");
             }
         }
 
@@ -44,12 +42,11 @@ namespace LoggingService.WCFService
         {
             try
             {
-                _logger.LogToConsole(MessageType.Info, appName, message);
-                _logger.LogToFile(MessageType.Info, appName, message);
+                _logger.Log(MessageType.Info, appName, message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(string.Format("Error occured when writing log: {0}", ex.Message));
+                Console.WriteLine($"Error occured when writing log: {ex.Message}");
             }
         }
 
@@ -57,17 +54,16 @@ namespace LoggingService.WCFService
         {
             if (exception == null)
             {
-                throw new ArgumentNullException("exceptionError is null");
+                throw new ArgumentNullException($"{nameof(exception)} is null");
             }
 
             try
             {
-                _logger.LogToConsole(MessageType.Error, appName, string.Format("{0}, Exception message: {1} Stack trace: {2}", message, exception.Message, exception.StackTrace));
-                _logger.LogToFile(MessageType.Error, appName, string.Format("{0}, Exception message: {1} Stack trace: {2}", message, exception.Message, exception.StackTrace));
+                _logger.Log(MessageType.Error, appName, $"{message}, Exception message: {exception.Message} Stack trace: {exception.StackTrace}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(string.Format("Error occured when writing log: {0}", ex.Message));
+                Console.WriteLine($"Error occured when writing log: {ex.Message}");
             }
         }
     }

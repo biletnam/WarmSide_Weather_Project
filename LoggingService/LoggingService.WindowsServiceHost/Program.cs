@@ -32,11 +32,11 @@ namespace LoggingService.WindowsServiceHost
         {
             Console.Title = "Loggin Service Console Host";
             WCFLoggingService logger = new WCFLoggingService();
-            logger.StartWCFLogger();
+            logger.Start();
             Console.WriteLine("Logging service has successfully started!");
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
-            logger.StopWCFLogger();
+            logger.Stop();
         }
     }
 }

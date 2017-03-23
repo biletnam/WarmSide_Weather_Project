@@ -8,10 +8,7 @@ namespace LoggingService.WCFService.LogServices
 {
     public interface ILoggingProvider
     {
-        void LogToFile(MessageType type, string appName, string message);
-
-        void LogToConsole(MessageType type, string appName, string message);
-
+        void Log(MessageType type, string appName, string message);
     }
     public enum MessageType
     {

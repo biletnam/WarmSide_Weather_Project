@@ -13,12 +13,12 @@ namespace LoggingService.WCFService
         public static IUnityContainer UnityContainer
         {
             get;
-            set;
         }
 
         public static void Initialize()
         {
             UnityContainer.RegisterType<ILoggingProvider, SerilogLoggingProvider>();
+            UnityContainer.RegisterType<WCFLogger>();
         }
     }
 }

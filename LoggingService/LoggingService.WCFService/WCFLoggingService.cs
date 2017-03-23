@@ -1,29 +1,24 @@
-﻿using System;
-using System.ServiceModel;
-using LoggingService.WCFService.LogServices;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ServiceModel;
 using Microsoft.Practices.Unity;
 
 namespace LoggingService.WCFService
 {
     public class WCFLoggingService
     {
-        ServiceHost wcfLogger;
+        private readonly ServiceHost wcfLogger;
 
         public WCFLoggingService()
         {
             Config.Initialize();
-            WCFLogger wcfLoggerInstance = new WCFLogger(Config.UnityContainer.Resolve<ILoggingProvider>());
+            WCFLogger wcfLoggerInstance = Config.UnityContainer.Resolve<WCFLogger>();
             wcfLogger = new ServiceHost(wcfLoggerInstance);
         }
-        public void StartWCFLogger()
+        public void Start()
         {
             wcfLogger.Open();
         }
 
-        public void StopWCFLogger()
+        public void Stop()
         {
             wcfLogger.Close();
         }

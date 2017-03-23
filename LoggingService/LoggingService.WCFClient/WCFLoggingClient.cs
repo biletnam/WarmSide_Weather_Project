@@ -4,27 +4,30 @@ namespace LoggingService.WCFClient
 {
     public class WCFLoggingClient
     {
-        public static void LogInfo(string appName, string message)
+        private readonly WCFLogger.WCFLoggerClient logger;
+
+        public WCFLoggingClient()
         {
-            WCFLogger.WCFLoggerClient logger = new WCFLogger.WCFLoggerClient();
+            logger = new WCFLogger.WCFLoggerClient();
+        }
+
+        public void LogInfo(string appName, string message)
+        {
             logger.LogInfo(appName, message);
         }
 
-        public static void LogWarning(string appName, string message)
-        {
-            WCFLogger.WCFLoggerClient logger = new WCFLogger.WCFLoggerClient();
+        public void LogWarning(string appName, string message)
+        { 
             logger.LogWarning(appName, message);
         }
 
-        public static void LogError(string appName, string message)
+        public void LogError(string appName, string message)
         {
-            WCFLogger.WCFLoggerClient logger = new WCFLogger.WCFLoggerClient();
             logger.LogError(appName, message);
         }
 
-        public static void LogErrorWithException(string appName, string message, Exception ex)
+        public void LogErrorWithException(string appName, string message, Exception ex)
         {
-            WCFLogger.WCFLoggerClient logger = new WCFLogger.WCFLoggerClient();
             logger.LogErrorWithException(appName, message, ex);
         }
     }
