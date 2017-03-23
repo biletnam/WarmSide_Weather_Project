@@ -23,7 +23,7 @@ namespace LoggingService.WCFService
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error occured when writing log: {ex.Message}");
+                Console.WriteLine(string.Format("Error occured when writing log: {0}", ex.Message));
             }
         }
 
@@ -36,7 +36,7 @@ namespace LoggingService.WCFService
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error occured when writing log: {ex.Message}");
+                Console.WriteLine(string.Format("Error occured when writing log: {0}", ex.Message));
             }
         }
 
@@ -49,7 +49,7 @@ namespace LoggingService.WCFService
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error occured when writing log: {ex.Message}");
+                Console.WriteLine(string.Format("Error occured when writing log: {0}", ex.Message));
             }
         }
 
@@ -62,12 +62,12 @@ namespace LoggingService.WCFService
 
             try
             {
-                _logger.LogToConsole(MessageType.Error, appName, $"{message}, Exception message: {exception.Message} Stack trace: {exception.StackTrace}");
-                _logger.LogToFile(MessageType.Error, appName, $"{message}, Exception message: {exception.Message} Stack trace: {exception.StackTrace}");
+                _logger.LogToConsole(MessageType.Error, appName, string.Format("{0}, Exception message: {1} Stack trace: {2}", message, exception.Message, exception.StackTrace));
+                _logger.LogToFile(MessageType.Error, appName, string.Format("{0}, Exception message: {1} Stack trace: {2}", message, exception.Message, exception.StackTrace));
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error occured when writing log: {ex.Message}");
+                Console.WriteLine(string.Format("Error occured when writing log: {0}", ex.Message));
             }
         }
     }

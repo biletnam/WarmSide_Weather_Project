@@ -1,6 +1,5 @@
 ﻿$ErrorActionPreference = 'Stop';
 
-Write-Host $PSScriptRoot
 # Variables initialization
 if($args[0] -eq 'PROD')
 {
@@ -18,12 +17,14 @@ else
 
 # Function declaration
 .  .\Scripts\Deploy_functions.ps1
-
-ValidatePaths;
-RestoreNugetPackages;
-Build;
-Deploy;
-CheckWebSiteStatus;
+ValidatePaths $nuget $msbuild
+RestoreNugetPackages $nuget $warmSideWebSitePath
+BuildProject $warmSideWebSitePath "..\..\$warmSideBuildFolder"
+DeployWebSite $webSiteName $webSitePort $appPoolName $webSitePath $warmSideBuildFolder
+CheckWebSiteStatus "http://localhost:$webSitePort"
+RestoreNugetPackages $nuget $loggingServiceProjectPath
+BuildProject $loggingServiceProjectPath $loggingServiceBuildFolder
+DeployLoggingService $loggingServiceBuildFolder $loggingServiceExeName;
 
 
 

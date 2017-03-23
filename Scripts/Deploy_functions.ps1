@@ -15,24 +15,23 @@
 # $webSitePort - port number of webSite that is created for the project
 
 # Builds solution
-function Build
+function BuildProject($projectPath, $buildDir)
 {
 	# Create or clear Publish folder
-	New-Item -ItemType Directory -Force -Path $buildFolder | Out-Null;
-	Remove-Item -Path ($buildFolder + "\*") -Recurse;
+	New-Item -ItemType Directory -Force -Path $buildDir | Out-Null;
+	Remove-Item -Path ($buildDir + "\*") -Recurse;
 
-	& $msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath="..\..\$buildFolder";
+	& $msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath=$buildDir;
 	if($LastExitCode -ne 0)
 	{
-		throw [System.Exception] "Build failed."
+		throw [System.Exception] "Project $projectPath build failed."
 	}
-	
 }
 
 # Checks if created WebSite works
-function CheckWebSiteStatus
+function CheckWebSiteStatus($siteUrl)
 {
-	If ((Invoke-WebRequest "http://localhost:$webSitePort").StatusCode -eq 200) 
+	If ((Invoke-WebRequest "$siteUrl").StatusCode -eq 200) 
 	{ 
 		Write-Host "Site is OK!" 
 	}
@@ -43,9 +42,9 @@ function CheckWebSiteStatus
 }
 
 # Deploys project to IIS using specified parameters
-function Deploy
+function DeployWebSite($siteName, $sitePort, $poolName, $sitePath, $siteBuildDir)
 {
-	if ((Get-Website -Name $webSiteName) -eq $null)
+	if ((Get-Website -Name $siteName) -eq $null)
 	{
 		Write-Host "Website doesn't exist. Creating new one...";
 		
@@ -53,14 +52,14 @@ function Deploy
 		New-Item -ItemType Directory -Force -Path $webSitePath;
 		
 		# Creating WebAppPool and WebSite
-		New-WebAppPool $appPoolName;
-		New-WebSite -Name $webSiteName -Port $webSitePort  -ApplicationPool $appPoolName -PhysicalPath $webSitePath;
+		New-WebAppPool $poolName;
+		New-WebSite -Name $siteName -Port $sitePort  -ApplicationPool $poolName -PhysicalPath $sitePath;
 		# Deploying website
-		Copy-Item -Path ($buildFolder + "\_PublishedWebsites\" + $webSiteName + "\*") -Destination $webSitePath -recurse -Force;
+		Copy-Item -Path ($siteBuildDir + "\_PublishedWebsites\" + $siteName + "\*") -Destination $sitePath -recurse -Force;
 
 		# Starting WebAppPool and WebSite
-		StartStopWebAppPool -action Start -poolName $appPoolName;
-		Start-Website -Name $webSiteName;
+		StartStopWebAppPool -action Start -poolName $poolName;
+		Start-Website -Name $siteName;
 
 		Write-Host "Website was successfully created and deployed!";
 	}
@@ -71,25 +70,26 @@ function Deploy
 		Write-Host "Website exists";
 
 		# Stopping WebAppPool and WebSite
-		Stop-Website -Name $webSiteName;
-		StartStopWebAppPool -action Stop -poolName $appPoolName;
+		Stop-Website -Name $siteName;
+		StartStopWebAppPool -action Stop -poolName $poolName;
 
 		# Deploying WebSite
-		$currentWebSitePath = (Get-Website -Name $webSiteName).physicalPath;
-		Copy-Item -Path ($buildFolder + "\_PublishedWebsites\" + $webSiteName + "\*") -Destination "$currentWebSitePath" -recurse -Force;
+		$currentWebSitePath = (Get-Website -Name $siteName).physicalPath;
+		Copy-Item -Path ($siteBuildDir + "\_PublishedWebsites\" + $siteName + "\*") -Destination "$currentWebSitePath" -recurse -Force;
 		
 		# Starting WebAppPool and WebSite
-		StartStopWebAppPool -action Start -poolName $appPoolName;
-		Start-Website -Name $webSiteName;
+		StartStopWebAppPool -action Start -poolName $poolName;
+        Write-Host $siteName
+		Start-Website -Name $siteName;
 
 		Write-Host "Website was successfully deployed!";
 	}
 }
 
 # Restores Nuget packages in project
-function RestoreNugetPackages
+function RestoreNugetPackages($nuget, $projectDir)
 {
-	& $nuget restore ($projectPath) -noninteractive;
+	& $nuget restore ($projectDir) -noninteractive;
 }
 
 # Starts or stops WebAppPool
@@ -101,11 +101,11 @@ function StartStopWebAppPool($action, $poolName)
 	{
 		if ( (Get-WebAppPoolState -Name $poolName).Value -eq "Started")
 			{
-				Write-Host "AppPool already started " + $poolName
+				Write-Host "AppPool already started $poolName" 
 			}
 			else
 			{
-				Write-Host "Starting the AppPool: " + $poolName
+				Write-Host "Starting the AppPool: $poolName" 
 				Write-Host (Get-WebAppPoolState $poolName).Value
 
 				Start-WebAppPool -Name $poolName
@@ -127,11 +127,11 @@ function StartStopWebAppPool($action, $poolName)
 	{
 		if ( (Get-WebAppPoolState -Name $poolName).Value -eq "Stopped" )
 			{
-				Write-Host "AppPool already stopped: " + $poolName
+				Write-Host "AppPool already stopped: $poolName" 
 			}
 			else
 			{
-				Write-Host "Shutting down the AppPool: " + $poolName
+				Write-Host "Shutting down the AppPool: $poolName"
 				Write-Host (Get-WebAppPoolState $poolName).Value
 
 				Stop-WebAppPool -Name $poolName
@@ -160,20 +160,19 @@ function StartStopWebAppPool($action, $poolName)
 # Tests project and tools paths
 function ValidatePaths
 {
-	if (!(Test-Path $nuget))
-	{
-		throw [System.Exception] "Nuget application does not exist on the specified path: $nuget"
-	}
+    foreach ($path in $args) 
+    {
+	    if (!(Test-Path $path))
+	    {
+		    throw [System.Exception] "Application or file does not exist on the specified path: $path"
+	    }
+    }
+}
 
-	if (!(Test-Path $msbuild))
-	{
-		throw [System.Exception] "MSBuild application does not exist on the specified path: $msbuild"
-	}
-
-	if (!(Test-Path $projectPath))
-	{
-		throw [System.Exception] "Target project does not exist on the specified path: $projectPath"
-	}
+function DeployLoggingService($buildDir, $assemblyName)
+{
+    installutil "$buildDir\$assemblyName"
+    start-service LoggingWindowsService
 }
 
 

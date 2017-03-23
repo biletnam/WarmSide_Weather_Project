@@ -19,13 +19,13 @@ namespace LoggingService.WCFService.LogServices
             switch (type)
             {
                 case MessageType.Info:
-                    logToConsole.Information($"{appName}: {message}");
+                    logToConsole.Information(string.Format("{0}: {1}", appName, message));
                     break;
                 case MessageType.Warning:
-                    logToConsole.Warning($"{appName}: {message}");
+                    logToConsole.Warning(string.Format("{0}: {1}", appName, message));
                     break;
                 case MessageType.Error:
-                    logToConsole.Error($"{appName}: {message}");
+                    logToConsole.Error(string.Format("{0}: {1}", appName, message));
                     break;
             }
         }
@@ -35,13 +35,13 @@ namespace LoggingService.WCFService.LogServices
             switch (type)
             {
                 case MessageType.Info:
-                    logToFile.Information($"{appName}: {message}");
+                    logToFile.Information(string.Format("{0}: {1}", appName, message));
                     break;
                 case MessageType.Warning:
-                    logToFile.Warning($"{appName}: {message}");
+                    logToFile.Warning(string.Format("{0}: {1}", appName, message));
                     break;
                 case MessageType.Error:
-                    logToFile.Error($"{appName}: {message}");
+                    logToFile.Error(string.Format("{0}: {1}", appName, message));
                     break;
             }
         }
