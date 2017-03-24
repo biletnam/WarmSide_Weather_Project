@@ -6,7 +6,7 @@ $msbuild = 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe';
 $rootFolder = ''; #..\
 $warmSideWebSitePath = $rootFolder + 'WarmSide\WarmSide.sln';
 $warmSideBuildFolder = $rootFolder + 'Publish';
-$loggingServiceProjectPath = $rootFolder + 'LoggingService';
+$loggingServiceProjectPath = $rootFolder + 'LoggingService\LoggingService.sln';
 $loggingServiceBuildFolder = 'C:\LoggingService';
 $loggingServiceExeName = 'LoggingService.WindowsServiceHost.exe';
 
