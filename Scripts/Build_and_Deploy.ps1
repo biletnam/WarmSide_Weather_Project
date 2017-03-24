@@ -17,11 +17,11 @@ else
 
 # Function declaration
 .  .\Scripts\Deploy_functions.ps1
-ValidatePaths $nuget $msbuild
-RestoreNugetPackages $nuget $warmSideWebSitePath
-BuildProject $warmSideWebSitePath "..\..\$warmSideBuildFolder"
-DeployWebSite $webSiteName $webSitePort $appPoolName $webSitePath $warmSideBuildFolder
-CheckWebSiteStatus "http://localhost:$webSitePort"
+#ValidatePaths $nuget $msbuild
+#RestoreNugetPackages $nuget $warmSideWebSitePath
+#BuildProject $warmSideWebSitePath "..\..\$warmSideBuildFolder"
+#DeployWebSite $webSiteName $webSitePort $appPoolName $webSitePath $warmSideBuildFolder
+#CheckWebSiteStatus "http://localhost:$webSitePort"
 RestoreNugetPackages $nuget $loggingServiceProjectPath
 BuildProject $loggingServiceProjectPath $loggingServiceBuildFolder
 DeployLoggingService $loggingServiceBuildFolder $loggingServiceExeName;
