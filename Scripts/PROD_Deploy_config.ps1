@@ -2,7 +2,7 @@
 
 # Service variables
 $nuget = 'C:\PowerShellBuild\nuget.exe';
-$msbuild = 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe';
+$msbuild = 'C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe';
 $rootFolder = ''; #..\
 $warmSideWebSitePath = $rootFolder + 'WarmSide\WarmSide.sln';
 $warmSideBuildFolder = $rootFolder + 'Publish';

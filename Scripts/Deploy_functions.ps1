@@ -21,7 +21,7 @@ function BuildProject($projectPath, $buildDir)
 	New-Item -ItemType Directory -Force -Path $buildDir | Out-Null;
 	Remove-Item -Path ($buildDir + "\*") -Recurse;
 
-	& $msbuild $projectPath /t:Build /tv:14.0 /p:Configuration=Release /p:OutputPath=$buildDir;
+	& $msbuild $projectPath /t:Build /p:Configuration=Release /p:OutputPath=$buildDir;
 	if($LastExitCode -ne 0)
 	{
 		throw [System.Exception] "Project $projectPath build failed."
