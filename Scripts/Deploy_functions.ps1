@@ -171,7 +171,7 @@ function ValidatePaths
 
 function DeployLoggingService($buildDir, $assemblyName)
 {
-    installutil "$buildDir\$assemblyName"
+    & $installutil "$buildDir\$assemblyName"
     start-service LoggingWindowsService
 }
 
