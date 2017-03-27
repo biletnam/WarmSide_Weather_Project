@@ -10,6 +10,7 @@ $warmSideBuildFolder = $rootFolder + 'Publish';
 $loggingServiceProjectPath = $rootFolder + 'LoggingService\LoggingService.sln';
 $loggingServiceBuildFolder = 'C:\LoggingService';
 $loggingServiceExeName = 'LoggingService.WindowsServiceHost.exe';
+$loggingServiceName = 'LoggingWindowsService';
 
 # New site properties
 $appPoolName = "WarmSide";

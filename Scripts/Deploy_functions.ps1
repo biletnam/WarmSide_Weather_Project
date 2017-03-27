@@ -164,15 +164,20 @@ function ValidatePaths
     {
 	    if (!(Test-Path $path))
 	    {
-		    throw [System.Exception] "Application or file does not exist on the specified path: $path"
+		    throw [System.Exception] "Application or file does not exist on the specified path: $path";
 	    }
     }
 }
 
-function DeployLoggingService($buildDir, $assemblyName)
+function DeployLoggingService($buildDir, $assemblyName, $serviceName)
 {
-    & $installutil "$buildDir\$assemblyName"
-    start-service LoggingWindowsService
+    & $installutil "$buildDir\$assemblyName";
+    start-service $serviceName;
+}
+
+function DeleteServiceIfExists($buildDir, $assemblyName)
+{
+	& $installutil /u "$buildDir\$assemblyName";
 }
 
 
