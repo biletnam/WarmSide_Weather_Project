@@ -11,16 +11,6 @@ namespace LoggingService.WCFClient
             logger = new WCFLogger.WCFLoggerClient();
         }
 
-        public void LogInfo(string appName, string message)
-        {
-            logger.LogInfo(appName, message);
-        }
-
-        public void LogWarning(string appName, string message)
-        { 
-            logger.LogWarning(appName, message);
-        }
-
         public void LogError(string appName, string message)
         {
             logger.LogError(appName, message);
@@ -29,6 +19,16 @@ namespace LoggingService.WCFClient
         public void LogErrorWithException(string appName, string message, Exception ex)
         {
             logger.LogErrorWithException(appName, message, ex);
+        }
+
+        public void LogInfo(string appName, string message)
+        {
+            logger.LogInfo(appName, message);
+        }
+
+        public void LogWarning(string appName, string message)
+        { 
+            logger.LogWarning(appName, message);
         }
     }
 }

@@ -26,11 +26,16 @@ namespace LoggingService.WCFService
             }
         }
 
-        public void LogWarning(string appName, string message)
+        public void LogErrorWithException(string appName, string message, Exception exception)
         {
+            if (exception == null)
+            {
+                throw new ArgumentNullException($"{nameof(exception)} is null");
+            }
+
             try
             {
-                _logger.Log(MessageType.Warning, appName, message);
+                _logger.Log(MessageType.Error, appName, $"{message}, Exception message: {exception.Message} Stack trace: {exception.StackTrace}");
             }
             catch (Exception ex)
             {
@@ -50,16 +55,11 @@ namespace LoggingService.WCFService
             }
         }
 
-        public void LogErrorWithException(string appName, string message, Exception exception)
+        public void LogWarning(string appName, string message)
         {
-            if (exception == null)
-            {
-                throw new ArgumentNullException($"{nameof(exception)} is null");
-            }
-
             try
             {
-                _logger.Log(MessageType.Error, appName, $"{message}, Exception message: {exception.Message} Stack trace: {exception.StackTrace}");
+                _logger.Log(MessageType.Warning, appName, message);
             }
             catch (Exception ex)
             {

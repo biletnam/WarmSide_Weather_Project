@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ServiceProcess;
 using LoggingService.WCFService;
-using System.Security.Principal;
 
 namespace LoggingService.WindowsServiceHost
 {
@@ -19,15 +18,6 @@ namespace LoggingService.WindowsServiceHost
             }
         }
 
-        public static void RunWindowsServiceHost()
-        {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
-            {
-                new LoggingWindowsService()
-            };
-            ServiceBase.Run(ServicesToRun);
-        }
         public static void RunConsoleAppHost()
         {
             Console.Title = "Loggin Service Console Host";
@@ -37,6 +27,16 @@ namespace LoggingService.WindowsServiceHost
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
             logger.Stop();
+        }
+
+        public static void RunWindowsServiceHost()
+        {
+            ServiceBase[] ServicesToRun;
+            ServicesToRun = new ServiceBase[]
+            {
+                new LoggingWindowsService()
+            };
+            ServiceBase.Run(ServicesToRun);
         }
     }
 }

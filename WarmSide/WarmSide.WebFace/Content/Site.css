@@ -1,0 +1,69 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.currentWeather {
+    margin-left:40px;
+    margin-top:20px;
+}
+
+.headerText {
+    font-style:italic;
+    color:maroon;
+    font-kerning:normal
+}
+
+.currentLocationText {
+    font-style:italic;
+    margin-left:40px;
+    color:maroon;
+    font-kerning:normal
+}
+
+.currentWeatherDesc {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size:large;
+    font-weight:200;
+    color:navy;
+}
+
+.changeCityBox {
+        font-style:italic;
+    margin-left:40px;
+    color:maroon;
+    font-kerning:normal;
+}
+
+.capitalize {
+   text-transform: capitalize;
+}
+
+body { 
+     background: url('../../WeatherWallpaper.png') no-repeat center center fixed; 
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+   }
+.scale-of-measurement__item {
+    display:inline-block
+}
+.weatherForecast {
+    float:right;
+    margin:40px;
+}
+

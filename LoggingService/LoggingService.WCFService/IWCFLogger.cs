@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 using System.ServiceModel;
 
 namespace LoggingService.WCFService
@@ -8,15 +7,15 @@ namespace LoggingService.WCFService
     public interface IWCFLogger
     {
         [OperationContract]
-        void LogInfo(string appName, string message);
-
-        [OperationContract]
         void LogError(string appName, string message);
 
         [OperationContract]
-        void LogWarning(string appName, string message);
+        void LogErrorWithException(string appName, string message, Exception ex);
 
         [OperationContract]
-        void LogErrorWithException(string appName, string message, Exception ex);
+        void LogInfo(string appName, string message);
+
+        [OperationContract]
+        void LogWarning(string appName, string message);
     }
 }
