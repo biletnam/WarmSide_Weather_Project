@@ -1,15 +1,18 @@
 ﻿(function (angular) {
     angular.module('weatherApp').controller('WeatherController', WeatherController);
 
-    WeatherController.$inject = ['$scope', '$http', 'weatherAppDataService', '$interval', 'serverConfig'];
+    WeatherController.$inject = ['$scope', '$http', 'weatherAppDataService', '$filter', 'serverConfig'];
 
-    function WeatherController($scope, $http, weatherAppDataService, $interval, serverConfig) {
+    function WeatherController($scope, $http, weatherAppDataService, $filter, serverConfig) {
         var vm = this;
         vm.serverUrl = serverConfig.serverUrl + ':' + serverConfig.port + '/';
         vm.currentWeatherState = {};
         vm.weatherForecast = {};
         vm.iconUri = '';
+        vm.iconBaseUri = 'http://openweathermap.org/img/w/';
         vm.currentCity = 'Los Angeles';
+        vm.forecastDays = [];
+        vm.dayWeatherForecast = [];
 
         vm.getCurrentWeather = function(city)
         {
@@ -22,7 +25,20 @@
         vm.getWeatherForecast = function (city) {
             weatherAppDataService.getForecast(city).then(function (response) {
                 vm.weatherForecast = response.data;
-                console.log(response.data.list.length);
+
+                vm.forecastDays = [];
+
+                for (var i = 0; i < vm.weatherForecast.list.length; i++)
+                {
+                    var day = $filter('date')(vm.weatherForecast.list[i].dt * 1000, 'EEEE');
+
+                    if (!vm.forecastDays.includes(day))
+                    {
+                        vm.forecastDays.push(day);
+                    }
+                }
+
+                vm.populateDayForecast(vm.forecastDays[0]);
             });
         }
 
@@ -36,9 +52,27 @@
                 else if (cloudinessLevel < 70)
                     return 'Mostly Cloudy';
                 else return 'Cloudy';
-            }
+        }
 
-        vm.getCurrentWeather(vm.currentCity);
-        vm.getWeatherForecast(vm.currentCity);
+        vm.populateDayForecast = function (chosenDay) {
+            vm.dayWeatherForecast = [];
+
+            for (var i = 0; i < vm.weatherForecast.list.length; i++) {
+
+                var day = $filter('date')(vm.weatherForecast.list[i].dt * 1000, 'EEEE');
+
+                if (day == chosenDay) {
+                    vm.dayWeatherForecast.push(vm.weatherForecast.list[i]);
+                }
+            }
+        }
+
+        vm.refreshWeather = function() {
+            vm.getCurrentWeather(vm.currentCity);
+            vm.getWeatherForecast(vm.currentCity);
+        }
+
+        vm.refreshWeather();
+
     }
 })(angular);

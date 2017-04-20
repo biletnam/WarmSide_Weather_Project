@@ -30,7 +30,7 @@ textarea {
 .currentLocationText {
     font-style:italic;
     margin-left:40px;
-    color:maroon;
+    color:navy;
     font-kerning:normal
 }
 
@@ -42,9 +42,9 @@ textarea {
 }
 
 .changeCityBox {
-        font-style:italic;
+    font-style:italic;
     margin-left:40px;
-    color:maroon;
+    color:navy;
     font-kerning:normal;
 }
 
@@ -53,7 +53,7 @@ textarea {
 }
 
 body { 
-     background: url('../../WeatherWallpaper.png') no-repeat center center fixed; 
+     background: url('../../WeatherWallpaper.jpg') no-repeat center center fixed; 
      -webkit-background-size: cover;
      -moz-background-size: cover;
      -o-background-size: cover;
@@ -63,7 +63,14 @@ body {
     display:inline-block
 }
 .weatherForecast {
-    float:right;
     margin:40px;
+}
+
+.daySelector {
+    display:inline-block;
+    margin:10px;
+}
+.small_val {
+    font:800
 }
 
