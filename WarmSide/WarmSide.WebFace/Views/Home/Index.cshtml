@@ -8,7 +8,7 @@
         <label class="h3 currentLocationText">Current location is {{wc.currentCity}}</label>
         <div class="changeCityBox">
             <label>Please enter the city name:</label>
-            <input type="text" class="input-sm" style="background:transparent; font:600" ng-model="wc.currentCity" />
+            <input type="text" class="input-sm" style="background:transparent; font:600" ng-model="wc.currentCity" ng-keyup="$event.keyCode == 13 ? wc.refreshWeather() : null"/>
             <button class="btn btn-info" ng-click="wc.refreshWeather()">Get the forecast</button>
         </div>
         <div class="currentWeather">
@@ -56,15 +56,16 @@
             </div>
         </div>
         <div class="weatherForecast">
-            <div ng-view> </div>
             <div id="forecast_small" class="scale-of-measurement">
-                <div class="small_val" title="Time">{{wc.dayWeatherForecast[0].dt*1000 | date:'EEEE'}}</div>
+                <div class="small_val" title="Time">
+                    <label class="label label-primary" style="font-size:larger">{{wc.dayWeatherForecast[0].dt*1000 | date:'EEEE'}}</label>
+                </div>
                 <div ng-repeat="item in wc.dayWeatherForecast" class="scale-of-measurement__item">
+                    <div class="small_val" title="Time">{{item.dt*1000 | date:'HH:mm'}}</div>
                     <img alt="scattered clouds" ng-src="{{wc.iconBaseUri + item.weather[0].icon + '.png'}}">
-                    <div class="small_val" title="Temp">Temp: {{item.main.temp/33.8 | number:1}} °C</div>
-                    <div class="small_val" title="Wind">Wind: {{item.wind.speed}} m/s</div>
-                    <div class="small_val_grey" title="Pressure">Pressure: {{item.main.pressure}}</div>
-                    <div class="small_val" title="Time">Time: {{item.dt*1000 | date:'HH:mm'}}</div>
+                    <div class="small_val" title="Temp">{{item.main.temp/33.8 | number:1}} °C</div>
+                    <div class="small_val" title="Wind">{{item.wind.speed}} m/s</div>
+                    <div class="small_val_grey" title="Pressure">{{item.main.pressure}} hpa</div>
                 </div>
             </div>
         </div>

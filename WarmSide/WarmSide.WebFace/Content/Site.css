@@ -60,7 +60,8 @@ body {
      background-size: cover;
    }
 .scale-of-measurement__item {
-    display:inline-block
+    display:inline-block;
+    margin:20px;
 }
 .weatherForecast {
     margin:40px;
@@ -70,7 +71,8 @@ body {
     display:inline-block;
     margin:10px;
 }
-.small_val {
-    font:800
+
+.scale-of-measurement {
+    border-style:solid;
 }
 
