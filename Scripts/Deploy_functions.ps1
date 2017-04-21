@@ -31,7 +31,7 @@ function BuildProject($projectPath, $buildDir)
 # Checks if created WebSite works
 function CheckWebSiteStatus($siteUrl)
 {
-	If ((Invoke-WebRequest "$siteUrl").StatusCode -eq 200) 
+	If ((Invoke-WebRequest "$siteUrl" -usebasicparsing).StatusCode -eq 200) 
 	{ 
 		Write-Host "Site is OK!" 
 	}
