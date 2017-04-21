@@ -6,16 +6,24 @@ $msbuild = 'C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe';
 $installutil = 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\installutil.exe';
 $rootFolder = ''; #..\
 $warmSideWebSitePath = $rootFolder + 'WarmSide\WarmSide.sln';
-$warmSideBuildFolder = $rootFolder + 'Publish';
+$warmSideWebFaceBuildFolder = $rootFolder + 'Publish\_PublishedWebsites\WarmSide.WebFace';
+$warmSideWebApiBuildFolder = $rootFolder + 'Publish\_PublishedWebsites\WarmSide.WebApi';
+$buildDir = $rootFolder + 'Publish';
 $loggingServiceProjectPath = $rootFolder + 'LoggingService\LoggingService.sln';
 $loggingServiceBuildFolder = 'C:\LoggingService';
 $loggingServiceExeName = 'LoggingService.WindowsServiceHost.exe';
 $loggingServiceName = 'LoggingWindowsService';
 
-# New site properties
-$appPoolName = "WarmSide";
-$webSiteName = "WarmSide";
-$webSitePath = 'C:\inetpub\wwwroot\WarmSide';
-$webSitePort = 86;
+# New WebFace site properties
+$webFaceAppPoolName = "WarmSideWebFace";
+$webFaceSiteName = "WarmSideWebFace";
+$webFaceSitePath = 'C:\inetpub\wwwroot\WarmSideWebFace';
+$webFaceSitePort = 83;
+
+# New WebApi site properties
+$webApiAppPoolName = "WarmSideWebApi";
+$webApiSiteName = "WarmSideWebApi";
+$webApiSitePath = 'C:\inetpub\wwwroot\WarmSideWebApi';
+$webApiSitePort = 86;
 
 Write-Host "Variables were set"

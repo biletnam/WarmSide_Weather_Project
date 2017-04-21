@@ -20,8 +20,10 @@ else
 ValidatePaths $nuget $msbuild
 RestoreNugetPackages $nuget $warmSideWebSitePath
 BuildProject $warmSideWebSitePath "..\..\$warmSideBuildFolder"
-DeployWebSite $webSiteName $webSitePort $appPoolName $webSitePath $warmSideBuildFolder
-CheckWebSiteStatus "http://localhost:$webSitePort"
+DeployWebSite $webFaceSiteName $webFaceSitePort $webFaceAppPoolName $webFaceSitePath $warmSideBuildFolder
+CheckWebSiteStatus "http://localhost:$webFaceSitePort"
+DeployWebSite $webApiSiteName $webApiSitePort $webApiAppPoolName $webApiSitePath $warmSideBuildFolder
+CheckWebSiteStatus "http://localhost:$webApiSitePort/api/Weather/GetCurrentWeather?city=Lviv"
 DeleteServiceIfExists $loggingServiceBuildFolder $loggingServiceExeName
 RestoreNugetPackages $nuget $loggingServiceProjectPath
 BuildProject $loggingServiceProjectPath $loggingServiceBuildFolder
