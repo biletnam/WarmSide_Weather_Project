@@ -14,13 +14,13 @@ $loggingServiceName = 'LoggingWindowsService';
 
 # New WebFace site properties
 $webFaceAppPoolName = "WarmSideWebFace";
-$webFaceSiteName = "WarmSideWebFace";
+$webFaceSiteName = "WarmSide.WebFace";
 $webFaceSitePath = 'C:\inetpub\wwwroot\WarmSideWebFace';
 $webFaceSitePort = 83;
 
 # New WebApi site properties
 $webApiAppPoolName = "WarmSideWebApi";
-$webApiSiteName = "WarmSideWebApi";
+$webApiSiteName = "WarmSide.WebApi";
 $webApiSitePath = 'C:\inetpub\wwwroot\WarmSideWebApi';
 $webApiSitePort = 86;
 
