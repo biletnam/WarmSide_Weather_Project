@@ -7,6 +7,7 @@ namespace WarmSide.WebFace.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.Title = "Warm Side Weather Project";
             return View();
         }
     }
