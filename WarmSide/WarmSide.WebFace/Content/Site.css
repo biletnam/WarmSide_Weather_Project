@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
 }
 
@@ -17,14 +17,17 @@ textarea {
 }
 
 .currentWeather {
-    margin-left:40px;
-    margin-top:20px;
+    margin-top:50px;
+    width:auto;
 }
 
 .headerText {
     font-style:italic;
     color:maroon;
-    font-kerning:normal
+    font-kerning:normal;
+    margin-top:-90px;
+    margin-bottom:50px;
+    margin-left:10px;
 }
 
 .currentLocationText {
@@ -38,14 +41,23 @@ textarea {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size:large;
     font-weight:200;
-    color:navy;
+    color:darkblue;
+    float:left;
 }
 
 .changeCityBox {
-    font-style:italic;
-    margin-left:40px;
-    color:navy;
-    font-kerning:normal;
+    background-color:azure;
+    font-style: italic;
+    margin-left: 40px;
+    color: black;
+    font-kerning: normal;
+    -webkit-box-shadow: 13px -25px 20px 32px azure;
+    -moz-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
+    width: auto;
+    min-width: 300px;
+    max-width:505px;
+    margin-right: 70em;
+    padding: 4px;
 }
 
 .capitalize {
@@ -58,13 +70,25 @@ body {
      -moz-background-size: cover;
      -o-background-size: cover;
      background-size: cover;
+     width:100%;
    }
 .scale-of-measurement__item {
     display:inline-block;
     margin:20px;
+      text-align:center;
+}
+
+.scale-of-measurement__item:hover {
+    overflow: visible;
 }
 .weatherForecast {
+    width:auto;
     margin:40px;
+    background-color:azure;
+    display:inline-block;
+    -webkit-box-shadow: 1px 25px 20px 32px azure;
+    opacity:0.84;
+    margin-top:50px;
 }
 
 .daySelector {
@@ -72,6 +96,44 @@ body {
     margin:10px;
 }
 
-.scale-of-measurement {
+.daySelectorButton {
+     margin:3px;
+     width:100px;
 }
 
+.weather-widget {
+    width:100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@media only screen and (max-width: 500px) {
+    .daySelector {
+    width:100%;
+    text-align:center;
+    }
+    .daySelectorButton {
+        width:40%;
+        margin:3px
+    }
+    .weatherForecast {
+        width:100%;
+    }
+    .scale-of-measurement__item {
+    display:inline-block;
+    text-align:center;
+    margin: 10px -14px;
+    width:auto;
+    }
+    .currentWeather {
+        width:100%;
+    }
+    .pressureTitle {
+        visibility:hidden;
+    }
+    .scale-of-measurement {
+        width:auto;
+    }
+}
