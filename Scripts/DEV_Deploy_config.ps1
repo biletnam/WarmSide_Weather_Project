@@ -16,12 +16,12 @@ $loggingServiceName = 'LoggingWindowsService';
 $webFaceAppPoolName = "WarmSideWebFace";
 $webFaceSiteName = "WarmSide.WebFace";
 $webFaceSitePath = 'C:\inetpub\wwwroot\WarmSideWebFace';
-$webFaceSitePort = 83;
+$webFaceSitePort = 80;
 
 # New WebApi site properties
 $webApiAppPoolName = "WarmSideWebApi";
 $webApiSiteName = "WarmSide.WebApi";
 $webApiSitePath = 'C:\inetpub\wwwroot\WarmSideWebApi';
-$webApiSitePort = 86;
+$webApiSitePort = 83;
 
 Write-Host "Variables were set"

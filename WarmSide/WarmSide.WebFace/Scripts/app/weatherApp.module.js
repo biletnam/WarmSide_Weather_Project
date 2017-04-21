@@ -4,7 +4,7 @@
 
     angular.module("weatherApp").constant("serverConfig", {
         "serverUrl": "http://localhost",
-        "port": "50798"
+        "port": "83"
     })
 
 })(angular);
