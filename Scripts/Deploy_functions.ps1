@@ -49,7 +49,7 @@ function DeployWebSite($siteName, $sitePort, $poolName, $sitePath, $siteBuildDir
 		Write-Host "Website doesn't exist. Creating new one...";
 		
 		# Creating folder in IIS
-		New-Item -ItemType Directory -Force -Path $webSitePath;
+		New-Item -ItemType Directory -Force -Path $sitePath;
 		
 		# Creating WebAppPool and WebSite
 		New-WebAppPool $poolName;
