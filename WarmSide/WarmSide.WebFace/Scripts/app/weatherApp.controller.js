@@ -9,16 +9,17 @@
         vm.currentWeatherState = {};
         vm.weatherForecast = {};
         vm.iconUri = '';
-        vm.iconBaseUri = 'http://openweathermap.org/img/w/';
+        vm.iconBaseUri = serverConfig.weatherIconBaseUri;
         vm.currentCity = 'Los Angeles';
         vm.forecastDays = [];
         vm.dayWeatherForecast = [];
+        vm.cityPhotoApiUri = serverConfig.serverUrl + ':' + serverConfig.port + '/' + serverConfig.cityPictureApiUrl;
 
         vm.getCurrentWeather = function(city)
         {
             weatherAppDataService.getCurrentWeather(city).then(function (response) {
                 vm.currentWeatherState = response.data;
-                vm.iconUri = 'http://openweathermap.org/img/w/' + response.data.weather[0].icon + '.png';
+                vm.iconUri = serverConfig.weatherIconBaseUri + response.data.weather[0].icon + '.png';
             });
         }
 
@@ -39,6 +40,7 @@
                 }
 
                 vm.populateDayForecast(vm.forecastDays[0]);
+                angular.element('#bodyTag').css('background', "url('" + vm.cityPhotoApiUri + vm.currentCity + "') no-repeat center center fixed");
             });
         }
 

@@ -75,14 +75,20 @@ body {
 .scale-of-measurement__item {
     display:inline-block;
     margin:20px;
-      text-align:center;
+    text-align:center;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    width:auto;
+    border: 1px solid transparent;
+    border-radius: 17px;
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #cccccc;
 }
 
-.scale-of-measurement__item:hover {
-    overflow: visible;
-}
 .weatherForecast {
-    width:auto;
+    width:60%;
     margin:40px;
     background-color:azure;
     display:inline-block;
@@ -108,6 +114,7 @@ body {
 * {
     box-sizing: border-box;
 }
+
 
 @media only screen and (max-width: 500px) {
     .daySelector {

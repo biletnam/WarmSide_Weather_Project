@@ -12,10 +12,11 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
-<body>
+<body id="bodyTag" ng-app="weatherApp">
     <div> 
         @RenderBody()
     </div>
+    <script src="~/Scripts/libs/jquery-3.2.1.js"></script>
     <script src="~/Scripts/libs/angular.js"></script>
     <script src="~/Scripts/app/weatherApp.module.js"></script>
     <script src="~/Scripts/app/weatherApp-data.service.js"></script>

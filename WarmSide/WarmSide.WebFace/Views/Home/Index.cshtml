@@ -3,9 +3,10 @@
     <label class="h2 headerText">WarmSide Weather Portal</label>
 </span>
 
-<div ng-app="weatherApp">
+<div>
     <div ng-controller="WeatherController as wc">
         <label class="h3 currentLocationText">Current location is {{wc.currentCity}}</label>
+        <label class="h2 currentLocationText">Longtitude/Lattitude: {{wc.currentWeatherState.coord.lon}}/{{wc.currentWeatherState.coord.lat}}</label>
         <div class="changeCityBox">
             <label>Please enter the city name:</label>
             <input type="text" class="input-sm" style="background:transparent; font:600" ng-model="wc.currentCity" ng-keyup="$event.keyCode == 13 ? wc.refreshWeather() : null"/>
@@ -67,7 +68,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 
