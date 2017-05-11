@@ -118,6 +118,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="Controllers\PlacePhotoController.cs" />
     <Compile Include="Controllers\WeatherController.cs" />
+    <Compile Include="FileResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
