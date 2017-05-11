@@ -1,24 +1,57 @@
 ﻿using System.Web.Http;
-using WarmSide.WebApi.Models;
-using WarmSide.WebApi.Providers.Interfaces;
-using WarmSide.WebApi.Providers.Classes;
 using System.Web.Http.Cors;
+using System.Threading.Tasks;
+using CityWeatherService.Interfaces;
+using Microsoft.Practices.Unity;
 
 namespace WarmSide.WebApi.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class WeatherController : ApiController
     {
-        public CurrentWeather GetCurrentWeather(string city)
+        private readonly IWeatherService _weatherProvider;
+        private readonly WebAPIResponseFormatter _responseFormatter;
+
+        public WeatherController()
         {
-            IWeatherProvider weatherProvider = new OpenWeatherApiWeatherProvider();
-            return weatherProvider.GetCurrent(city);
+            _weatherProvider = Config.UnityContainer.Resolve<IWeatherService>();
+            _responseFormatter = new WebAPIResponseFormatter();
         }
 
-        public ForecastWeather GetForecast(string city)
+        [Route("{city}/current")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetCurrentWeatherAsync(string city)
         {
-            IWeatherProvider weatherProvider = new OpenWeatherApiWeatherProvider();
-            return weatherProvider.GetForecast(city);
+            if (string.IsNullOrEmpty(city))
+            {
+                return BadRequest();
+            }
+
+            var response = _weatherProvider.GetCurrent(city);  
+                      
+            if (response == null)
+                return NotFound();
+
+            var adaptedResponse = _responseFormatter.FormatCurrentWeatherResponse(response);
+
+            return Ok(adaptedResponse);
+        }
+
+        [Route("{city}/forecast")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetForecast(string city)
+        {
+            if (string.IsNullOrEmpty(city))
+                return BadRequest();
+
+            var response = _weatherProvider.GetForecast(city);
+
+            if (response == null)
+                return NotFound();
+
+            var adaptedResponse = _responseFormatter.FormatForecastWeatherResponse(response);
+
+            return Ok(adaptedResponse);
         }
     }
 }

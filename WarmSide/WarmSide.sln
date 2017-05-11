@@ -7,6 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarmSide.WebFace", "WarmSid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarmSide.WebApi", "WarmSide.WebApi\WarmSide.WebApi.csproj", "{EE7E6B75-48DE-44C5-8030-02BAD9E04FA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityWeatherService.Interfaces", "CityWeatherService.Interfaces\CityWeatherService.Interfaces.csproj", "{D0988F79-CE1C-4249-9E85-6ED5EC2CD5EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityWeatherService.Services", "CityWeatherService.Services\CityWeatherService.Services.csproj", "{D8A66D8B-7693-4A21-B8EC-E26F03110159}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityWeatherService.DTO;", "CityWeatherService.DTO;\CityWeatherService.DTO;.csproj", "{D87870ED-7363-48E7-8C4B-8CC558EE5D89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityWeatherService.Model", "CityWeatherService.Model\CityWeatherService.Model.csproj", "{9591F1A2-ECA4-4CA4-A811-A609CD645143}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarmSide.WebAPI.DTO", "WarmSide.WebAPI.DTO\WarmSide.WebAPI.DTO.csproj", "{91DF92DB-0864-483E-957A-AA65007E6C08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +31,26 @@ Global
 		{EE7E6B75-48DE-44C5-8030-02BAD9E04FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE7E6B75-48DE-44C5-8030-02BAD9E04FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE7E6B75-48DE-44C5-8030-02BAD9E04FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0988F79-CE1C-4249-9E85-6ED5EC2CD5EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0988F79-CE1C-4249-9E85-6ED5EC2CD5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0988F79-CE1C-4249-9E85-6ED5EC2CD5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0988F79-CE1C-4249-9E85-6ED5EC2CD5EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8A66D8B-7693-4A21-B8EC-E26F03110159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8A66D8B-7693-4A21-B8EC-E26F03110159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8A66D8B-7693-4A21-B8EC-E26F03110159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8A66D8B-7693-4A21-B8EC-E26F03110159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D87870ED-7363-48E7-8C4B-8CC558EE5D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D87870ED-7363-48E7-8C4B-8CC558EE5D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D87870ED-7363-48E7-8C4B-8CC558EE5D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D87870ED-7363-48E7-8C4B-8CC558EE5D89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9591F1A2-ECA4-4CA4-A811-A609CD645143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9591F1A2-ECA4-4CA4-A811-A609CD645143}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9591F1A2-ECA4-4CA4-A811-A609CD645143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9591F1A2-ECA4-4CA4-A811-A609CD645143}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91DF92DB-0864-483E-957A-AA65007E6C08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91DF92DB-0864-483E-957A-AA65007E6C08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91DF92DB-0864-483E-957A-AA65007E6C08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91DF92DB-0864-483E-957A-AA65007E6C08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

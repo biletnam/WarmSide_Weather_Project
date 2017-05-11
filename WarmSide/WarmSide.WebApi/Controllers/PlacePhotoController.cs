@@ -1,23 +1,39 @@
-﻿using System.Net;
-using System.Net.Http;
+﻿using System.Web.Http;
+using CityWeatherService.Interfaces;
+using System.Threading.Tasks;
+using Microsoft.Practices.Unity;
 using System.Net.Http.Headers;
-using System.Web.Http;
-using WarmSide.WebApi.Providers.Classes;
-using WarmSide.WebApi.Providers.Interfaces;
+using System.Net.Http;
 
 namespace WarmSide.WebApi.Controllers
 {
     public class PlacePhotoController : ApiController
     {
-        public HttpResponseMessage GetCityPhoto(string cityName)
-        {
-            IPhotoProvider photoProvider = new FlickerApiPhotoProvider();
-            byte[] photo = photoProvider.GetPlacePhoto(cityName);
+        private readonly IPhotoService _photoProvider;
 
-            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
-            result.Content = new ByteArrayContent(photo);
-            result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
-            return result;
+        public PlacePhotoController()
+        {
+            _photoProvider = Config.UnityContainer.Resolve<IPhotoService>();
+        }
+
+        [Route("{city}/picture")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetCityPhoto(string city)
+        {
+            if(string.IsNullOrEmpty(city))
+            {
+                return BadRequest();
+            }
+
+            var photo = _photoProvider.GetPlacePhoto(city);
+
+            if (photo == null)
+                return NotFound();
+
+            var response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK);
+            response.Content = new ByteArrayContent(photo);
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+            return Ok();
         }
     }
 }

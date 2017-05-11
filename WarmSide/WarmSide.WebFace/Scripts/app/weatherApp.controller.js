@@ -13,7 +13,7 @@
         vm.currentCity = 'Los Angeles';
         vm.forecastDays = [];
         vm.dayWeatherForecast = [];
-        vm.cityPhotoApiUri = serverConfig.serverUrl + ':' + serverConfig.port + '/' + serverConfig.cityPictureApiUrl;
+        vm.cityPhotoApiUri = serverConfig.serverUrl + ':' + serverConfig.port + '/';
 
         vm.getCurrentWeather = function(city)
         {
@@ -40,7 +40,7 @@
                 }
 
                 vm.populateDayForecast(vm.forecastDays[0]);
-                angular.element('#bodyTag').css('background', "url('" + vm.cityPhotoApiUri + vm.currentCity + "') no-repeat center center fixed");
+                angular.element('#bodyTag').css('background', "url('" + vm.cityPhotoApiUri + vm.currentCity + "/picture') no-repeat center center fixed");
             });
         }
 

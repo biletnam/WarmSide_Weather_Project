@@ -19,7 +19,7 @@
 
         function getCurrentWeather(city) {
             var promise = $http({
-                url: serverUrl + serverConfig.currentWeatherApiBaseUri + city,
+                url: serverUrl + city + '/current',
                 method: "GET",
             });
 
@@ -28,7 +28,7 @@
 
         function getForecast(city) {
             var promise = $http({
-                url: serverUrl + serverConfig.weatherForecastApiBaseUri + city,
+                url: serverUrl + city + '/forecast',
                 method: "GET",
             });
 

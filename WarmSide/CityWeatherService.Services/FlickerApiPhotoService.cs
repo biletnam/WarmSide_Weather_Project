@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using WarmSide.WebApi.Providers.Interfaces;
+﻿using CityWeatherService.Interfaces;
 using FlickrNet;
-using System.Configuration;
-using System.Net;
-using System.Text;
-using System.IO;
 using System.Net.Http;
 
-namespace WarmSide.WebApi.Providers.Classes
+namespace CityWeatherService.Services
 {
-    public class FlickerApiPhotoProvider : IPhotoProvider
+    public class FlickerApiPhotoService : IPhotoService
     {
-        private Flickr _flickr;
+        private readonly Flickr _flickr;
 
-        public FlickerApiPhotoProvider()
+        public FlickerApiPhotoService(IFlickerApiPhotoServiceConfig config)
         {
-            _flickr = new Flickr(ConfigurationManager.AppSettings["FlickerApiKey"]);
+            _flickr = new Flickr(config.FlickerApiKey);
         }
 
         public byte[] GetPlacePhoto(string cityName)
@@ -33,10 +25,11 @@ namespace WarmSide.WebApi.Providers.Classes
             }
             else
             {
-                return new byte[5];
+                return new byte[0];
             }
 
             HttpClient httpClient = new HttpClient();
+
             return httpClient.GetAsync(url).ContinueWith((requestTask) => 
             {
                 HttpResponseMessage response = requestTask.Result;
