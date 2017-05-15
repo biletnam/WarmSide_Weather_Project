@@ -1,6 +1,11 @@
 ﻿body {
     padding-top: 20px;
     padding-bottom: 20px;
+    background-size : cover;
+    -webkit-background-size : cover;
+    -moz-background-size : cover;
+    -o-background-size: cover;
+    width :100%;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -46,32 +51,27 @@ textarea {
 }
 
 .changeCityBox {
-    background-color:azure;
+    
     font-style: italic;
     margin-left: 40px;
     color: black;
     font-kerning: normal;
-    -webkit-box-shadow: 13px -25px 20px 32px azure;
-    -moz-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
     width: auto;
     min-width: 300px;
     max-width:505px;
     margin-right: 70em;
     padding: 4px;
+    -webkit-box-shadow: 13px -25px 20px 32px azure;
+    -moz-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
+    background-color:azure;
 }
+
 
 .capitalize {
    text-transform: capitalize;
 }
 
-body { 
-     background: url('../../WeatherWallpaper.jpg') no-repeat center center fixed; 
-     -webkit-background-size: cover;
-     -moz-background-size: cover;
-     -o-background-size: cover;
-     background-size: cover;
-     width:100%;
-   }
+
 .scale-of-measurement__item {
     display:inline-block;
     margin:20px;

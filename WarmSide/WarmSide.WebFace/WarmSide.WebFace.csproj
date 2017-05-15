@@ -93,6 +93,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="picture.png" />
+    <Content Include="Scripts\app\weatherApp-backImg.directive.js" />
     <Content Include="Scripts\app\weatherApp-data.service.js" />
     <Content Include="Scripts\app\weatherApp.controller.js" />
     <Content Include="Scripts\app\weatherApp.module.js" />

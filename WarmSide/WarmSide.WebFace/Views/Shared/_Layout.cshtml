@@ -12,13 +12,12 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
-<body id="bodyTag" ng-app="weatherApp">
-    <div> 
+<body id="backgroundImage"  ng-app="weatherApp" ng-controller="WeatherController as wc">> 
         @RenderBody()
-    </div>
     <script src="~/Scripts/libs/jquery-3.2.1.js"></script>
     <script src="~/Scripts/libs/angular.js"></script>
     <script src="~/Scripts/app/weatherApp.module.js"></script>
+    <script src="~/Scripts/app/weatherApp-backImg.directive.js"></script>
     <script src="~/Scripts/app/weatherApp-data.service.js"></script>
     <script src="~/Scripts/app/weatherApp.controller.js"></script>
 </body>

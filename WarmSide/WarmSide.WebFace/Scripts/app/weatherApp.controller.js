@@ -14,6 +14,7 @@
         vm.forecastDays = [];
         vm.dayWeatherForecast = [];
         vm.cityPhotoApiUri = serverConfig.serverUrl + ':' + serverConfig.port + '/';
+        vm.cityImageUri = '';
 
         vm.getCurrentWeather = function(city)
         {
@@ -40,7 +41,8 @@
                 }
 
                 vm.populateDayForecast(vm.forecastDays[0]);
-                angular.element('#bodyTag').css('background', "url('" + vm.cityPhotoApiUri + vm.currentCity + "/picture') no-repeat center center fixed");
+                vm.cityImageUri = vm.cityPhotoApiUri + vm.currentCity + '/picture';
+                document.getElementById("backgroundImage").style.backgroundImage = "url('" + vm.cityImageUri + "')";
             });
         }
 
