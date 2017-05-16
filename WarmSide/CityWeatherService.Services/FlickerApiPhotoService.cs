@@ -6,13 +6,29 @@ namespace CityWeatherService.Services
 {
     public class FlickerApiPhotoService : IPhotoService
     {
+        #region Private fields
         private readonly Flickr _flickr;
+        #endregion
 
+        #region Constructors
+
+        /// <summary>
+        /// Creates a new instance of FlickerApiPhotoService
+        /// </summary>
+        /// <param name="config">Config object that implements IFlickerApiPhotoServiceConfig interface</param>
         public FlickerApiPhotoService(IFlickerApiPhotoServiceConfig config)
         {
             _flickr = new Flickr(config.FlickerApiKey);
         }
+        #endregion
 
+        #region Public methods
+
+        /// <summary>
+        /// Gets a photo of a city specified by cityName parameter
+        /// </summary>
+        /// <param name="cityName">City name</param>
+        /// <returns>Image in byte array</returns>
         public byte[] GetPlacePhoto(string cityName)
         {
             string url;
@@ -39,5 +55,6 @@ namespace CityWeatherService.Services
                 return response.Content.ReadAsByteArrayAsync().Result;
             }).Result;
         }
+        #endregion
     }
 }

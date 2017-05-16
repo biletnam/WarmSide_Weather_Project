@@ -6,17 +6,33 @@ namespace CityWeatherService.Services
 {
     public class OpenWeatherApiWeatherService : IWeatherService
     {
+        #region Private fields
         private readonly string _weatherServerUri;
         private readonly string _weatherServerApiKey;
         private readonly WeatherResponseFormatter _formatter;
+        #endregion
 
+        #region Constructors
+
+        /// <summary>
+        /// Creates a new instance of OpenWeatherApiWeatherService
+        /// </summary>
+        /// <param name="config">Config object that implements IOpenWeatherApiServiceConfig interface</param>
         public OpenWeatherApiWeatherService(IOpenWeatherApiServiceConfig config)
         {
             _weatherServerUri = config.WeatherServerUri;
             _weatherServerApiKey = config.WeatherServerApiKey;
             _formatter = new WeatherResponseFormatter();
         }
+        #endregion
 
+        #region Public methods
+
+        /// <summary>
+        /// Gets current weather in the specified city
+        /// </summary>
+        /// <param name="city">City name</param>
+        /// <returns>CurrentWeatherAPIResponse type</returns>
         public Model.CurrentWeatherAPIResponse GetCurrent(string city)
         {
             string url = $"{_weatherServerUri}weather?q={city}&APPID={_weatherServerApiKey}";
@@ -30,6 +46,11 @@ namespace CityWeatherService.Services
             }
         }
 
+        /// <summary>
+        /// Gets weather forecast for the specified city
+        /// </summary>
+        /// <param name="city">City name</param>
+        /// <returns>ForecastWeatherApiResponse type</returns>
         public Model.ForecastWeatherApiResponse GetForecast(string city)
         {
             string url = $"{_weatherServerUri}forecast?q={city}&APPID={_weatherServerApiKey}";
@@ -41,10 +62,13 @@ namespace CityWeatherService.Services
                 return _formatter.FormatForecastWeatherResponse(result);
             }
         }
+        #endregion
 
-        public HttpClient CreateClient()
+        #region Private methods
+        private HttpClient CreateClient()
         {
             return new HttpClient();
         }
+        #endregion
     }
 }
