@@ -2,7 +2,7 @@
 
 namespace CityWeatherService.DTO
 {
-    public class Coordinates
+    public class CoordinatesDTO
     {
         [JsonProperty("lat")]
         public double Latitude { get; set; }

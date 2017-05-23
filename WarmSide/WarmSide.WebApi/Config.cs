@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Unity;
 using CityWeatherService.Interfaces;
 using CityWeatherService.Services;
+using Unity.WebApi;
 
 namespace WarmSide.WebApi
 {
@@ -9,6 +10,7 @@ namespace WarmSide.WebApi
         static Config()
         {
             UnityContainer = new UnityContainer();
+          
         }
 
         public static IUnityContainer UnityContainer
@@ -18,10 +20,14 @@ namespace WarmSide.WebApi
 
         public static void Initialize()
         {
-            var config = new CityWeatherServiceConfiguration();
-
-            UnityContainer.RegisterType<IPhotoService, FlickerApiPhotoService>(new InjectionConstructor(config));
-            UnityContainer.RegisterType<IWeatherService, OpenWeatherApiWeatherService>(new InjectionConstructor(config));
+            System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(UnityContainer);
+            UnityContainer.RegisterType<IFlickerApiPhotoServiceConfig, CityWeatherServiceConfiguration>(new ContainerControlledLifetimeManager());
+            UnityContainer.RegisterType<IOpenWeatherApiServiceConfig, CityWeatherServiceConfiguration>(new ContainerControlledLifetimeManager());
+            UnityContainer.RegisterType<IWeatherService, OpenWeatherApiWeatherService>();
+            UnityContainer.RegisterType<IHttpClientFactory, HttpClientFactory>();
+            UnityContainer.RegisterType<IWeatherResponseFormatter, WeatherResponseFormatter>();
+            UnityContainer.RegisterType<IPhotoService, FlickerApiPhotoService>();
+            
         }
     }
 }

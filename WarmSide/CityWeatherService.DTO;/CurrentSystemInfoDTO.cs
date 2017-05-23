@@ -2,7 +2,7 @@
 
 namespace CityWeatherService.DTO
 {
-    public class CurrentSystemInfo
+    public class CurrentSystemInfoDTO
     {
         [JsonProperty("country")]
         public string Country { get; set; }

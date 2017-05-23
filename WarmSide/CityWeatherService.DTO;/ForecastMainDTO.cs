@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace WarmSide.WebApi.DTO
+namespace CityWeatherService.DTO
 {
-    public class ForecastMain
+    public class ForecastMainDTO
     {
         [JsonProperty("temp")]
         public double Temperature { get; set; }

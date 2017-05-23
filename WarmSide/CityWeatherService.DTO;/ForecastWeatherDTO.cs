@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace CityWeatherService.DTO
 {
-    public class ForecastWeatherApiResponse
+    public class ForecastWeatherDTO
     {
         [JsonProperty("city")]
-        public City City { get; set; }
+        public CityDTO City { get; set; }
         [JsonProperty("coord")]
-        public Coordinates Coordinates { get; set; }
+        public CoordinatesDTO Coordinates { get; set; }
         [JsonProperty("country")]
         public string Country { get; set; }
         [JsonProperty("cod")]
@@ -18,6 +18,6 @@ namespace CityWeatherService.DTO
         [JsonProperty("cnt")]
         public int Counter { get; set; }
         [JsonProperty("list")]
-        public ForecastItem[] Forecast { get; set; }
+        public ForecastItemDTO[] Forecast { get; set; }
     }
 }

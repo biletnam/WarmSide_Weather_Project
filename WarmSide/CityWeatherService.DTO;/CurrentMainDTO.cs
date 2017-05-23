@@ -2,7 +2,7 @@
 
 namespace CityWeatherService.DTO
 {
-    public class CurrentMain
+    public class CurrentMainDTO
     {
         [JsonProperty("temp")]
         public double Temperature { get; set; }

@@ -12,11 +12,11 @@ namespace WarmSide.WebApi
         /// </summary>
         /// <param name="response">CurrentWeatherAPIResponse model object</param>
         /// <returns>CurrentWeatherAPIResponse DTO object</returns>
-        public DTO.CurrentWeatherAPIResponse FormatCurrentWeatherResponse(CurrentWeatherAPIResponse response)
+        public DTO.CurrentWeatherDTO FormatCurrentWeatherResponse(CurrentWeatherAPIResponse response)
         {
             var config = new TypeAdapterConfig();
             //config.Default.Ignore("Rain", "Code", "Id");
-            var destObject = TypeAdapter.Adapt<DTO.CurrentWeatherAPIResponse>(response, config);
+            var destObject = TypeAdapter.Adapt<DTO.CurrentWeatherDTO>(response, config);
             return destObject;
         }
 
@@ -25,11 +25,11 @@ namespace WarmSide.WebApi
         /// </summary>
         /// <param name="response">ForecastWeatherApiResponse model object</param>
         /// <returns>ForecastWeatherApiResponse DTO object</returns>
-        public DTO.ForecastWeatherApiResponse FormatForecastWeatherResponse(ForecastWeatherApiResponse response)
+        public DTO.ForecastWeatherDTO FormatForecastWeatherResponse(ForecastWeatherApiResponse response)
         {
             var config = new TypeAdapterConfig();
             //config.Default.Ignore("Rain", "Code", "Id", "Pod");
-            var destObject = TypeAdapter.Adapt<DTO.ForecastWeatherApiResponse>(response, config);
+            var destObject = TypeAdapter.Adapt<DTO.ForecastWeatherDTO>(response, config);
             return destObject;
         }
         #endregion

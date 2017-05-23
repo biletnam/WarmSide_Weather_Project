@@ -2,7 +2,7 @@
 
 namespace WarmSide.WebApi.DTO
 {
-    public class ForecastSystemInfo
+    public class ForecastSystemInfoDTO
     {
         [JsonProperty("pod")]
         public string Pod { get; set; }

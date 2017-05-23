@@ -44,19 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="City.cs" />
-    <Compile Include="Clouds.cs" />
-    <Compile Include="Coordinates.cs" />
-    <Compile Include="CurrentMain.cs" />
-    <Compile Include="CurrentSystemInfo.cs" />
-    <Compile Include="CurrentWeatherApiResponce.cs" />
-    <Compile Include="ForecastItem.cs" />
-    <Compile Include="ForecastMain.cs" />
-    <Compile Include="ForecastSystemInfo.cs" />
-    <Compile Include="ForecastWeatherApiResponce.cs" />
+    <Compile Include="CityDTO.cs" />
+    <Compile Include="CloudsDTO.cs" />
+    <Compile Include="CoordinatesDTO.cs" />
+    <Compile Include="CurrentMainDTO.cs" />
+    <Compile Include="CurrentSystemInfoDTO.cs" />
+    <Compile Include="CurrentWeatherDTO.cs" />
+    <Compile Include="ForecastItemDTO.cs" />
+    <Compile Include="ForecastMainDTO.cs" />
+    <Compile Include="ForecastSystemInfoDTO.cs" />
+    <Compile Include="ForecastWeatherDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WeatherItem.cs" />
-    <Compile Include="Wind.cs" />
+    <Compile Include="WeatherItemDTO.cs" />
+    <Compile Include="WindDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

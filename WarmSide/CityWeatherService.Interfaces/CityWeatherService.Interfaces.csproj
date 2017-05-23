@@ -41,12 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IFlickerApiPhotoServiceConfig.cs" />
+    <Compile Include="IHttpClientFactory.cs" />
     <Compile Include="IOpenWeatherApiServiceConfig.cs" />
     <Compile Include="IPhotoService.cs" />
+    <Compile Include="IWeatherResponseFormatter.cs" />
     <Compile Include="IWeatherService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CityWeatherService.DTO%3b\CityWeatherService.DTO%3b.csproj">
+      <Project>{d87870ed-7363-48e7-8c4b-8cc558ee5d89}</Project>
+      <Name>CityWeatherService.DTO%3b</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CityWeatherService.Model\CityWeatherService.Model.csproj">
       <Project>{9591f1a2-eca4-4ca4-a811-a609cd645143}</Project>
       <Name>CityWeatherService.Model</Name>

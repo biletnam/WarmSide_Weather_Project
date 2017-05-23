@@ -12,9 +12,9 @@ namespace WarmSide.WebApi.Controllers
         private readonly IWeatherService _weatherProvider;
         private readonly WebAPIResponseFormatter _responseFormatter;
 
-        public WeatherController()
+        public WeatherController(IWeatherService weatherProvider)
         {
-            _weatherProvider = Config.UnityContainer.Resolve<IWeatherService>();
+            _weatherProvider = weatherProvider;
             _responseFormatter = new WebAPIResponseFormatter();
         }
 
@@ -27,7 +27,7 @@ namespace WarmSide.WebApi.Controllers
                 return BadRequest();
             }
 
-            var response = _weatherProvider.GetCurrent(city);  
+            var response = await _weatherProvider.GetCurrentAsync(city);  
                       
             if (response == null)
                 return NotFound();
@@ -44,7 +44,7 @@ namespace WarmSide.WebApi.Controllers
             if (string.IsNullOrEmpty(city))
                 return BadRequest();
 
-            var response = _weatherProvider.GetForecast(city);
+            var response = _weatherProvider.GetForecastAsync(city);
 
             if (response == null)
                 return NotFound();

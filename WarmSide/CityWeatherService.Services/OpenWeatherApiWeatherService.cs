@@ -1,6 +1,7 @@
 ﻿using CityWeatherService.Interfaces;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace CityWeatherService.Services
 {
@@ -9,7 +10,8 @@ namespace CityWeatherService.Services
         #region Private fields
         private readonly string _weatherServerUri;
         private readonly string _weatherServerApiKey;
-        private readonly WeatherResponseFormatter _formatter;
+        private readonly IWeatherResponseFormatter _formatter;
+        private readonly IHttpClientFactory _httpFactory;
         #endregion
 
         #region Constructors
@@ -18,11 +20,12 @@ namespace CityWeatherService.Services
         /// Creates a new instance of OpenWeatherApiWeatherService
         /// </summary>
         /// <param name="config">Config object that implements IOpenWeatherApiServiceConfig interface</param>
-        public OpenWeatherApiWeatherService(IOpenWeatherApiServiceConfig config)
+        public OpenWeatherApiWeatherService(IOpenWeatherApiServiceConfig config, IWeatherResponseFormatter formatter, IHttpClientFactory httpFactory)
         {
             _weatherServerUri = config.WeatherServerUri;
             _weatherServerApiKey = config.WeatherServerApiKey;
-            _formatter = new WeatherResponseFormatter();
+            _formatter = formatter;
+            _httpFactory = httpFactory;
         }
         #endregion
 
@@ -33,15 +36,14 @@ namespace CityWeatherService.Services
         /// </summary>
         /// <param name="city">City name</param>
         /// <returns>CurrentWeatherAPIResponse type</returns>
-        public Model.CurrentWeatherAPIResponse GetCurrent(string city)
+        public async Task<Model.CurrentWeatherAPIResponse> GetCurrentAsync(string city)
         {
             string url = $"{_weatherServerUri}weather?q={city}&APPID={_weatherServerApiKey}";
 
-            using (var client = CreateClient())
+            using (var client = _httpFactory.CreateClient())
             {
-                var response = client.GetAsync(url).Result;
-                var content = response.Content.ReadAsStringAsync().Result;
-                var result = JsonConvert.DeserializeObject<DTO.CurrentWeatherAPIResponse>(content);
+                var response = await client.GetAsync(url);
+                var result = await response.Content.ReadAsAsync<DTO.CurrentWeatherDTO>();
                 return _formatter.FormatCurrentWeatherResponse(result);
             }
         }
@@ -51,23 +53,16 @@ namespace CityWeatherService.Services
         /// </summary>
         /// <param name="city">City name</param>
         /// <returns>ForecastWeatherApiResponse type</returns>
-        public Model.ForecastWeatherApiResponse GetForecast(string city)
+        public async Task<Model.ForecastWeatherApiResponse> GetForecastAsync(string city)
         {
             string url = $"{_weatherServerUri}forecast?q={city}&APPID={_weatherServerApiKey}";
 
-            using (var client = CreateClient())
+            using (var client = _httpFactory.CreateClient())
             {
-                var response = client.GetAsync(url).Result;
-                var result = response.Content.ReadAsAsync<DTO.ForecastWeatherApiResponse>().Result;
+                var response = await client.GetAsync(url);
+                var result = await response.Content.ReadAsAsync<DTO.ForecastWeatherDTO>();
                 return _formatter.FormatForecastWeatherResponse(result);
             }
-        }
-        #endregion
-
-        #region Private methods
-        private HttpClient CreateClient()
-        {
-            return new HttpClient();
         }
         #endregion
     }

@@ -2,7 +2,7 @@
 
 namespace WarmSide.WebApi.DTO
 {
-    public class WeatherItem
+    public class WeatherItemDTO
     {
         [JsonProperty("id")]
         public int Id { get; set; }

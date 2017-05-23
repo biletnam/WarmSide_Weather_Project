@@ -2,7 +2,7 @@
 
 namespace WarmSide.WebApi.DTO
 {
-    public class City
+    public class CityDTO
     {
         [JsonProperty("id")]
         public int Id { get; set; }
