@@ -7,10 +7,6 @@ namespace CityWeatherService.DTO
     {
         [JsonProperty("city")]
         public CityDTO City { get; set; }
-        [JsonProperty("coord")]
-        public CoordinatesDTO Coordinates { get; set; }
-        [JsonProperty("country")]
-        public string Country { get; set; }
         [JsonProperty("cod")]
         public int Code { get; set; }
         [JsonProperty("message")]

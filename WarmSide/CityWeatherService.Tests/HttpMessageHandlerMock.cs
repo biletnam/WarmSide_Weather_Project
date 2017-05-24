@@ -5,22 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Threading;
+using System.IO;
 
 namespace CityWeatherService.Tests
 {
     public class HttpMessageHandlerMock : HttpMessageHandler
     {
-        private string _jsonString = "";
+        private string _currentWeatherResponseJson= File.ReadAllText("D:\\currentWeatherTestJson.json");
+        private string _forecastWeatherResponseJson = File.ReadAllText("D:\\forecastWeatherTestJson.json");
+
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            return new Task<HttpResponseMessage>(() =>
+            var result = new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+            if (request.RequestUri.ToString().Contains("weather"))
             {
-                var result = new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+                result.Content = new StringContent(_currentWeatherResponseJson, System.Text.Encoding.UTF8, "application/json");
+            }
+            else
+            {
+                result.Content = new StringContent(_forecastWeatherResponseJson, System.Text.Encoding.UTF8, "application/json");
 
-                result.Content = new StringContent(_jsonString);
-
-                return result;
-            });
+            }
+            return Task.FromResult(result);
         }
     }
 }

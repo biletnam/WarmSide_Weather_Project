@@ -44,7 +44,7 @@ namespace WarmSide.WebApi.Controllers
             if (string.IsNullOrEmpty(city))
                 return BadRequest();
 
-            var response = _weatherProvider.GetForecastAsync(city);
+            var response = await _weatherProvider.GetForecastAsync(city);
 
             if (response == null)
                 return NotFound();

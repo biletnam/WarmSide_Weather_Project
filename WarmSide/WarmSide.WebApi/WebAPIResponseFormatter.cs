@@ -12,7 +12,7 @@ namespace WarmSide.WebApi
         /// </summary>
         /// <param name="response">CurrentWeatherAPIResponse model object</param>
         /// <returns>CurrentWeatherAPIResponse DTO object</returns>
-        public DTO.CurrentWeatherDTO FormatCurrentWeatherResponse(CurrentWeatherAPIResponse response)
+        public DTO.CurrentWeatherDTO FormatCurrentWeatherResponse(CurrentWeather response)
         {
             var config = new TypeAdapterConfig();
             //config.Default.Ignore("Rain", "Code", "Id");
@@ -25,7 +25,7 @@ namespace WarmSide.WebApi
         /// </summary>
         /// <param name="response">ForecastWeatherApiResponse model object</param>
         /// <returns>ForecastWeatherApiResponse DTO object</returns>
-        public DTO.ForecastWeatherDTO FormatForecastWeatherResponse(ForecastWeatherApiResponse response)
+        public DTO.ForecastWeatherDTO FormatForecastWeatherResponse(ForecastWeather response)
         {
             var config = new TypeAdapterConfig();
             //config.Default.Ignore("Rain", "Code", "Id", "Pod");

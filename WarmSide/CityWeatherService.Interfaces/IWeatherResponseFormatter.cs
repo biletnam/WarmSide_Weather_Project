@@ -2,8 +2,8 @@
 {
     public interface IWeatherResponseFormatter
     {
-        Model.CurrentWeatherAPIResponse FormatCurrentWeatherResponse(DTO.CurrentWeatherDTO response);
+        Model.CurrentWeather FormatCurrentWeatherResponse(DTO.CurrentWeatherDTO response);
 
-        Model.ForecastWeatherApiResponse FormatForecastWeatherResponse(DTO.ForecastWeatherDTO response);
+        Model.ForecastWeather FormatForecastWeatherResponse(DTO.ForecastWeatherDTO response);
     }
 }

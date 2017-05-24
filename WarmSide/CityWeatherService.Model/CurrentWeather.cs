@@ -2,7 +2,7 @@
 
 namespace CityWeatherService.Model
 {
-    public class CurrentWeatherAPIResponse
+    public class CurrentWeather
     {
         public Coordinates Coordinates { get; set; }
         public CurrentSystemInfo SystemInfo { get; set; }

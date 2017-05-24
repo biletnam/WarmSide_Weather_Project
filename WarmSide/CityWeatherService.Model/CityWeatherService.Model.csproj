@@ -49,11 +49,11 @@
     <Compile Include="Coordinates.cs" />
     <Compile Include="CurrentMain.cs" />
     <Compile Include="CurrentSystemInfo.cs" />
-    <Compile Include="CurrentWeatherApiResponse.cs" />
+    <Compile Include="CurrentWeather.cs" />
     <Compile Include="ForecastItem.cs" />
     <Compile Include="ForecastMain.cs" />
     <Compile Include="ForecastSystemInfo.cs" />
-    <Compile Include="ForecastWeatherApiResponse.cs" />
+    <Compile Include="ForecastWeather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeatherItem.cs" />
     <Compile Include="Wind.cs" />

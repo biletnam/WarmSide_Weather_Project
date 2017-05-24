@@ -5,7 +5,7 @@ namespace CityWeatherService.Interfaces
 {
     public interface IWeatherService
     {
-        Task<CurrentWeatherAPIResponse> GetCurrentAsync(string city);
-        ForecastWeatherApiResponse GetForecastAsync(string city);
+        Task<CurrentWeather> GetCurrentAsync(string city);
+        Task<ForecastWeather> GetForecastAsync(string city);
     }
 }

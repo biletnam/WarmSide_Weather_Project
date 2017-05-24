@@ -36,7 +36,7 @@ namespace CityWeatherService.Services
         /// </summary>
         /// <param name="city">City name</param>
         /// <returns>CurrentWeatherAPIResponse type</returns>
-        public async Task<Model.CurrentWeatherAPIResponse> GetCurrentAsync(string city)
+        public async Task<Model.CurrentWeather> GetCurrentAsync(string city)
         {
             string url = $"{_weatherServerUri}weather?q={city}&APPID={_weatherServerApiKey}";
 
@@ -53,7 +53,7 @@ namespace CityWeatherService.Services
         /// </summary>
         /// <param name="city">City name</param>
         /// <returns>ForecastWeatherApiResponse type</returns>
-        public async Task<Model.ForecastWeatherApiResponse> GetForecastAsync(string city)
+        public async Task<Model.ForecastWeather> GetForecastAsync(string city)
         {
             string url = $"{_weatherServerUri}forecast?q={city}&APPID={_weatherServerApiKey}";
 
