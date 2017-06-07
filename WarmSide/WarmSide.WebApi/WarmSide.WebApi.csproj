@@ -154,9 +154,9 @@
       <Project>{d8a66d8b-7693-4a21-b8ec-e26f03110159}</Project>
       <Name>CityWeatherService.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WarmSide.WebAPI.DTO\WarmSide.WebAPI.DTO.csproj">
+    <ProjectReference Include="..\WarmSide.WebAPI.DTO\WarmSide.WebApi.DTO.csproj">
       <Project>{91df92db-0864-483e-957a-aa65007e6c08}</Project>
-      <Name>WarmSide.WebAPI.DTO</Name>
+      <Name>WarmSide.WebApi.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

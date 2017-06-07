@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace CityWeatherService.Model
 {
+    [Serializable]
     public class CurrentMain
     {
         public double Temperature { get; set; }

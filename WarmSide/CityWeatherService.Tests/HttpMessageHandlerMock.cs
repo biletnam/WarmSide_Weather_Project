@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Net.Http;
 using System.Threading;
 using System.IO;
@@ -11,9 +7,12 @@ namespace CityWeatherService.Tests
 {
     public class HttpMessageHandlerMock : HttpMessageHandler
     {
+        #region Private methods
         private string _currentWeatherResponseJson= File.ReadAllText("D:\\currentWeatherTestJson.json");
         private string _forecastWeatherResponseJson = File.ReadAllText("D:\\forecastWeatherTestJson.json");
+        #endregion
 
+        #region Overriden methods
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             var result = new HttpResponseMessage(System.Net.HttpStatusCode.OK);
@@ -28,5 +27,6 @@ namespace CityWeatherService.Tests
             }
             return Task.FromResult(result);
         }
+        #endregion
     }
 }

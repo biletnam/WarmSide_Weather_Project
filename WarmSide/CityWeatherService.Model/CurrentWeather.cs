@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace CityWeatherService.Model
 {
+    [Serializable]
     public class CurrentWeather
     {
         public Coordinates Coordinates { get; set; }

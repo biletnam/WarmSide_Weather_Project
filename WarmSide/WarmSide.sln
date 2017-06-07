@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityWeatherService.DTO;", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityWeatherService.Model", "CityWeatherService.Model\CityWeatherService.Model.csproj", "{9591F1A2-ECA4-4CA4-A811-A609CD645143}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarmSide.WebAPI.DTO", "WarmSide.WebAPI.DTO\WarmSide.WebAPI.DTO.csproj", "{91DF92DB-0864-483E-957A-AA65007E6C08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarmSide.WebApi.DTO", "WarmSide.WebAPI.DTO\WarmSide.WebApi.DTO.csproj", "{91DF92DB-0864-483E-957A-AA65007E6C08}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityWeatherService.Tests", "CityWeatherService.Tests\CityWeatherService.Tests.csproj", "{B18C6C8C-B977-4FD3-BC2F-9105A5A9A07A}"
 EndProject

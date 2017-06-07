@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CityWeatherService.Services;
 using CityWeatherService.Interfaces;
 using System.Net.Http;
@@ -12,11 +11,14 @@ namespace CityWeatherService.Tests
     [TestClass]
     public class OpenWeatherApiWeatherServiceTest
     {
+        #region Private fields
         private IWeatherResponseFormatter _weatherFormatter;
         private OpenWeatherApiWeatherService _testInstance;
         private IHttpClientFactory _httpFactory;
         private IOpenWeatherApiServiceConfig _testConfig;
+        #endregion
 
+        #region Constructors
         public OpenWeatherApiWeatherServiceTest()
         {
             _testConfig = Substitute.For<IOpenWeatherApiServiceConfig>();
@@ -43,7 +45,9 @@ namespace CityWeatherService.Tests
 
             _testInstance = new OpenWeatherApiWeatherService(_testConfig, _weatherFormatter, _httpFactory);
         }
+        #endregion
 
+        #region Testing methods
         [TestMethod]
         public async Task GetCurrentAsyncTest()
         {
@@ -96,5 +100,6 @@ namespace CityWeatherService.Tests
             Assert.AreEqual(result.Forecast[0].Wind.Degree, 229.501);
             Assert.AreEqual(result.Forecast[0].DateTimeText, "2014-07-23 09:00:00");
         }
+        #endregion
     }
 }

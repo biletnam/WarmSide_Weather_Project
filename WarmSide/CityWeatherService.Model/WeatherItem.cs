@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace CityWeatherService.Model
 {
+    [Serializable]
     public class WeatherItem
     {
         public int Id { get; set; }
