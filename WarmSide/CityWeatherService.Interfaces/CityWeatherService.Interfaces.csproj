@@ -42,14 +42,14 @@
   <ItemGroup>
     <Compile Include="IFlickerApiPhotoServiceConfig.cs" />
     <Compile Include="IHttpClientFactory.cs" />
-    <Compile Include="IWeatherCacheServiceConfig.cs" />
+    <Compile Include="ICacheServiceConfig.cs" />
     <Compile Include="IOpenWeatherApiServiceConfig.cs" />
     <Compile Include="IPhotoService.cs" />
-    <Compile Include="IWeatherCacheService.cs" />
+    <Compile Include="ICacheService.cs" />
     <Compile Include="IWeatherResponseFormatter.cs" />
     <Compile Include="IWeatherService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IWeatherRepository.cs" />
+    <Compile Include="ICacheRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CityWeatherService.DTO%3b\CityWeatherService.DTO%3b.csproj">

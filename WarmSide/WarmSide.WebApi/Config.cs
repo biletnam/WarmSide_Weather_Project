@@ -23,13 +23,13 @@ namespace WarmSide.WebApi
             System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(UnityContainer);
             UnityContainer.RegisterType<IFlickerApiPhotoServiceConfig, CityWeatherServiceConfiguration>(new ContainerControlledLifetimeManager());
             UnityContainer.RegisterType<IOpenWeatherApiServiceConfig, CityWeatherServiceConfiguration>(new ContainerControlledLifetimeManager());
-            UnityContainer.RegisterType<IWeatherCacheServiceConfig, CityWeatherServiceConfiguration>(new ContainerControlledLifetimeManager());
+            UnityContainer.RegisterType<ICacheServiceConfig, CityWeatherServiceConfiguration>(new ContainerControlledLifetimeManager());
             UnityContainer.RegisterType<IWeatherService, OpenWeatherApiWeatherService>();
-            UnityContainer.RegisterType<IWeatherCacheService, WeatherCacheService>();
+            UnityContainer.RegisterType<ICacheService, CacheService>();
             UnityContainer.RegisterType<IHttpClientFactory, HttpClientFactory>();
             UnityContainer.RegisterType<IWeatherResponseFormatter, WeatherResponseFormatter>();
             UnityContainer.RegisterType<IPhotoService, FlickerApiPhotoService>();
-            UnityContainer.RegisterType<IWeatherRepository, WeatherRepository>();
+            UnityContainer.RegisterType<ICacheRepository, CacheRepository>();
         }
     }
 }

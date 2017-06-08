@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CityWeatherService.Interfaces
 {
-    public interface IWeatherCacheServiceConfig
+    public interface ICacheServiceConfig
     {
         TimeSpan CacheLifetimeInHours { get; }
     }

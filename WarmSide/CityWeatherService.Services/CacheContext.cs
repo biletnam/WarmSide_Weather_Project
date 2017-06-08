@@ -8,8 +8,8 @@ using CityWeatherService.Model.EntityModels;
 
 namespace CityWeatherService.Services
 {
-    public class WeatherCacheContext : DbContext
+    public class CacheContext : DbContext
     {
-        public DbSet<WeatherCacheEntry> WeatherCacheEntries { get; set; }
+        public DbSet<CacheEntry> CacheEntries { get; set; }
     }
 }

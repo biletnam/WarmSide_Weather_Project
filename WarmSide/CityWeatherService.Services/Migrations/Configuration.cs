@@ -5,14 +5,14 @@ namespace CityWeatherService.Services.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CityWeatherService.Services.WeatherCacheContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CityWeatherService.Services.CacheContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(CityWeatherService.Services.WeatherCacheContext context)
+        protected override void Seed(CityWeatherService.Services.CacheContext context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -4,7 +4,7 @@ using System.Configuration;
 
 namespace WarmSide.WebApi
 {
-    public class CityWeatherServiceConfiguration : IOpenWeatherApiServiceConfig, IFlickerApiPhotoServiceConfig, IWeatherCacheServiceConfig
+    public class CityWeatherServiceConfiguration : IOpenWeatherApiServiceConfig, IFlickerApiPhotoServiceConfig, ICacheServiceConfig
     {
         private string _flickerApiKey;
         private string _weatherServerApiKey;
