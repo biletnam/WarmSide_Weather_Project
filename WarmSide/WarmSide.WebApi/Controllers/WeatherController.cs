@@ -1,12 +1,8 @@
-﻿using System;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Threading.Tasks;
 using CityWeatherService.Interfaces;
 using CityWeatherService.Model;
-using Microsoft.Practices.Unity;
-using CityWeatherService.Services;
-using CityWeatherService.Model.EntityModels;
 
 namespace WarmSide.WebApi.Controllers
 {
@@ -35,7 +31,7 @@ namespace WarmSide.WebApi.Controllers
 
             CurrentWeather response;
 
-            var cacheResponse = _cacheService.GetFromCache<CurrentWeather>(city, "Current");
+            var cacheResponse = await _cacheService.GetFromCache<CurrentWeather>(city, "Current");
 
             if (cacheResponse != null)
             {
@@ -47,7 +43,7 @@ namespace WarmSide.WebApi.Controllers
 
                 if (response != null)
                 {
-                    _cacheService.PutIntoCache<CurrentWeather>(response, city, "Current");
+                    await _cacheService.PutIntoCache<CurrentWeather>(response, city, "Current");
                 }
             }
                    
@@ -55,6 +51,7 @@ namespace WarmSide.WebApi.Controllers
                 return NotFound();
 
             var adaptedResponse = _responseFormatter.FormatCurrentWeatherResponse(response);
+
 
             return Ok(adaptedResponse);
         }
@@ -68,7 +65,7 @@ namespace WarmSide.WebApi.Controllers
 
             ForecastWeather response;
 
-            var cacheResponse = _cacheService.GetFromCache<ForecastWeather>(city, "Forecast");
+            var cacheResponse = await _cacheService.GetFromCache<ForecastWeather>(city, "Forecast");
 
             if (cacheResponse != null)
             {
@@ -77,9 +74,10 @@ namespace WarmSide.WebApi.Controllers
             else
             {
                 response = await _weatherProvider.GetForecastAsync(city);
+
                 if (response != null)
                 {
-                    _cacheService.PutIntoCache<ForecastWeather>(response, city, "Forecast");
+                    await _cacheService.PutIntoCache<ForecastWeather>(response, city, "Forecast");
                 }
             }
 

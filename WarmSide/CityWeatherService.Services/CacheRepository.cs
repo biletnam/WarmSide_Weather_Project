@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Linq;
 using CityWeatherService.Interfaces;
+using System.Data.Entity;
+using System.Threading.Tasks;
 using CityWeatherService.Model.EntityModels;
 
 namespace CityWeatherService.Services
 {
     public class CacheRepository : ICacheRepository
     {
-        public void DeleteEntry(string name)
+        public async Task DeleteEntry(string name)
         {
             using (var db = new CacheContext())
             {
-                var result = (from c in db.CacheEntries
+                var result = await (from c in db.CacheEntries
                             where c.Name == name
-                            select c).FirstOrDefault();
+                            select c).FirstOrDefaultAsync();
 
                 db.CacheEntries.Remove(result);
 
@@ -21,33 +23,33 @@ namespace CityWeatherService.Services
             }
         }
 
-        public void InsertEntry(CacheEntry entry)
+        public async Task InsertEntry(CacheEntry entry)
         {
             using (var db = new CacheContext())
             {
-                db.CacheEntries.Add(entry);
+                await Task.Run(() => db.CacheEntries.Add(entry));
 
                 db.SaveChanges();
             }
         }
 
-        public CacheEntry SelectEntry(string name, string notes = null)
+        public async Task<CacheEntry> SelectEntry(string name, string notes = null)
         {
             using (var db = new CacheContext())
             {
-                var result = (from c in db.CacheEntries
-                            where c.Name == name && (notes == null) ? true : c.Notes == notes
-                              select c).FirstOrDefault();
+                var result = await (from c in db.CacheEntries
+                              where c.Name == name && ((notes == null) ? true : c.Notes == notes)
+                              select c).FirstOrDefaultAsync();
 
                 return result;
             }
         }
 
-        public void UpdateEntry(CacheEntry entry)
+        public async Task UpdateEntry(CacheEntry entry)
         {
             using (var db = new CacheContext())
             {
-                var result = db.CacheEntries.FirstOrDefault(c => c.Name == entry.Name && c.Notes == entry.Notes);
+                var result = await db.CacheEntries.FirstOrDefaultAsync(c => c.Name == entry.Name && c.Notes == entry.Notes);
 
                 if (result != null)
                 {

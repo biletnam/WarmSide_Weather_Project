@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using CityWeatherService.Interfaces;
 using CityWeatherService.Model.EntityModels;
-using CityWeatherService.Model;
 
 namespace CityWeatherService.Services
 {
@@ -18,9 +18,9 @@ namespace CityWeatherService.Services
             _config = config;
         }
 
-        public T GetFromCache<T>(string name, string notes = null) where T : class
+        public async Task<T> GetFromCache<T>(string name, string notes = null) where T : class
         {
-            CacheEntry entry = _repository.SelectEntry(name, notes);
+            CacheEntry entry = await _repository.SelectEntry(name, notes);
 
             if (entry == null || entry.DateCreated < DateTime.Now - _config.CacheLifetimeInHours)
             {
@@ -33,12 +33,12 @@ namespace CityWeatherService.Services
 
         }
 
-        public void PutIntoCache<T>(T cachedObject, string name, string notes)
+        public async Task PutIntoCache<T>(T cachedObject, string name, string notes)
         {
             MemoryStream stream = new MemoryStream();
             BinaryFormatter formatter = new BinaryFormatter();
 
-            CacheEntry entry = _repository.SelectEntry(name, notes);
+            CacheEntry entry = await _repository.SelectEntry(name, notes);
 
             if (entry != null)
             {
@@ -49,6 +49,7 @@ namespace CityWeatherService.Services
                     Notes = notes,
                     CachedObject = stream.ToArray()
                 });
+
                 return;
             }
 
