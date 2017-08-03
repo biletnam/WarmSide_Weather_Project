@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using System.Web.Routing;
+using WarmSide.WebFace.App_Start;
 
 namespace WarmSide.WebFace
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class Startup
     {
-        protected void Application_Start()
+        public void Configuration(IAppBuilder app)
         {
-            AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            AuthConfig.Configuration(app);
         }
     }
 }

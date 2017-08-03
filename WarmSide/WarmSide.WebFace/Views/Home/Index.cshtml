@@ -1,17 +1,33 @@
-﻿<span class="header">
-    <img src="~/siteIcon.gif">
-    <label class="h2 headerText">WarmSide Weather Portal</label>
-</span>
+﻿@using WarmSide.WebFace.Models
 
-<div>
+@model UserPreferences
+
+<div id="backgroundImage" class="background" ng-app="weatherApp" ng-controller="WeatherController as wc" ng-init="wc.currentCity='@Model.City'">
+    <span style="float:right; margin: 1% 1% 1% 1%">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <label class="authUserNameLabel">Hello, @User.Identity.Name</label>
+            <a class="authLoginButton btn btn-info" href="/Auth/Logout">Logout</a>
+        }
+        else
+        {
+            <a class="authLoginButton btn btn-info" href="/Auth/Login">Log in</a>
+        }
+    </span>
+    <span class="header">
+        <img src="~/siteIcon.gif">
+        <label class="h2 headerText">WarmSide Weather Portal</label>
+    </span>
+
     <div>
-        <label class="h3 currentLocationText">Current location is {{wc.currentCity}}</label>
-        <div class="changeCityBox whiteBackground" >
-            <label>Please enter the city name:</label>
-            <input type="text" class="input-sm" style="background:transparent; font:600" ng-model="wc.currentCity" ng-keyup="$event.keyCode == 13 ? wc.refreshWeather() : null"/>
-            <button class="btn btn-info" ng-click="wc.refreshWeather()">Get the forecast</button>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 whiteBackground">
+        <div>
+            <label class="h3 currentLocationText">Current location is {{wc.currentCity}}</label>
+            <div class="changeCityBox whiteBackground">
+                <label>Please enter the city name:</label>
+                <input type="text" class="input-sm" style="background:transparent; font:600" ng-model="wc.currentCity" ng-keyup="$event.keyCode == 13 ? wc.refreshWeather() : null" />
+                <button class="btn btn-info" ng-click="wc.refreshWeather()">Get the forecast</button>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 whiteBackground">
                 <!-- weather-widget  -->
                 <div id="weather-widget" class="weather-widget ">
                     <h3 id="weather-widget-city-name" class="weather-widget__city-name">Weather in {{wc.currentWeatherState.name}}, {{wc.currentWeatherState.sys.country}}</h3>
@@ -48,25 +64,25 @@
                     </table>
                 </div>
             </div>
-        <div class="weatherForecast">
-            <div class="daySelector">
-                <div ng-repeat="item in wc.forecastDays" style="display:inline">
-                    <button class="btn btn-primary daySelectorButton" ng-click="wc.populateDayForecast(item)">{{item}}</button>
+            <div class="weatherForecast">
+                <div class="daySelector">
+                    <div ng-repeat="item in wc.forecastDays" style="display:inline">
+                        <button class="btn btn-primary daySelectorButton" ng-click="wc.populateDayForecast(item)">{{item}}</button>
+                    </div>
                 </div>
-            </div>
-            <div id="forecast_small" class="scale-of-measurement">
-                <div class="small_val" title="Time">
-                    <label class="label label-primary" style="font-size:larger">{{wc.dayWeatherForecast[0].dt*1000 | date:'EEEE'}}</label>
-                </div>
-                <div ng-repeat="item in wc.dayWeatherForecast" class="scale-of-measurement__item">
-                    <div class="small_val" title="Time">{{item.dt*1000 | date:'HH:mm'}}</div>
+                <div id="forecast_small" class="scale-of-measurement">
+                    <div class="small_val" title="Time">
+                        <label class="label label-primary" style="font-size:larger">{{wc.dayWeatherForecast[0].dt*1000 | date:'EEEE'}}</label>
+                    </div>
+                    <div ng-repeat="item in wc.dayWeatherForecast" class="scale-of-measurement__item">
+                        <div class="small_val" title="Time">{{item.dt*1000 | date:'HH:mm'}}</div>
                         <img alt="scattered clouds" ng-src="{{wc.iconBaseUri + item.weather[0].icon + '.png'}}">
                         <div class="small_val" title="Temp">{{item.main.temp/33.8 | number:1}}°C</div>
                         <div class="small_val" title="Wind">{{item.wind.speed}}<br>m/s</div>
-                        <div class="small_val_grey pressureTitle" title="Pressure" >{{item.main.pressure}} hpa</div>
+                        <div class="small_val_grey pressureTitle" title="Pressure">{{item.main.pressure}} hpa</div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
-

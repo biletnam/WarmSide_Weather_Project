@@ -1,14 +1,17 @@
 ﻿using System.Web.Mvc;
+using WarmSide.WebFace.Models;
 
 namespace WarmSide.WebFace.Controllers
 {
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(string City = null)
         {
             ViewBag.Title = "Warm Side Weather Project";
-            return View();
+            if (City == null)
+                City = "Los Angeles";
+            return View(new UserPreferences { City = City });
         }
     }
 }
