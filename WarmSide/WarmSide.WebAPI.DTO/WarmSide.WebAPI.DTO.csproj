@@ -55,6 +55,7 @@
     <Compile Include="ForecastSystemInfoDTO.cs" />
     <Compile Include="ForecastWeatherDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDTO.cs" />
     <Compile Include="WeatherItemDTO.cs" />
     <Compile Include="WindDTO.cs" />
   </ItemGroup>

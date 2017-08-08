@@ -46,6 +46,8 @@
     <Compile Include="IOpenWeatherApiServiceConfig.cs" />
     <Compile Include="IPhotoService.cs" />
     <Compile Include="ICacheService.cs" />
+    <Compile Include="IUserRepository.cs" />
+    <Compile Include="IUserService.cs" />
     <Compile Include="IWeatherResponseFormatter.cs" />
     <Compile Include="IWeatherService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

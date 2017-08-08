@@ -60,6 +60,7 @@
     <Compile Include="CurrentSystemInfo.cs" />
     <Compile Include="CurrentWeather.cs" />
     <Compile Include="EntityModels\CacheEntry.cs" />
+    <Compile Include="EntityModels\User.cs" />
     <Compile Include="ForecastItem.cs" />
     <Compile Include="ForecastMain.cs" />
     <Compile Include="ForecastSystemInfo.cs" />

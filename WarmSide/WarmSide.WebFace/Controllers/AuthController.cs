@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
 using WarmSide.WebFace.Models;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace WarmSide.WebFace.Controllers
 {
@@ -52,9 +54,37 @@ namespace WarmSide.WebFace.Controllers
             }
         }
 
-        public ActionResult ExternalLoginCallback(string returnUrl)
+        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            return RedirectToAction("Index", "Home", new { City = "Khust" });
+            string favoriteCity;
+
+            var userManager = new UserManager(@"http://localhost:50798/", new HttpClientFactory());
+
+            var context = (ClaimsPrincipal)Request.GetOwinContext().Request.User;
+
+            string userId = (from c in context.Claims where c.Type == ClaimTypes.NameIdentifier select c.Value).FirstOrDefault();
+            var loggedUser = await userManager.FindUserById(userId);
+
+            if (loggedUser == null)
+            {
+                string userEmail = (from c in context.Claims where c.Type == ClaimTypes.Email select c.Value).FirstOrDefault();
+                var user = new User() { UserID = userId, Email = userEmail, FavoriteCity = "New York", IsGoogle = true, Password = ""};
+
+                bool result = await userManager.AddUser(user);
+
+                if (!result)
+                {
+                    return new HttpStatusCodeResult(500);
+                }
+
+                favoriteCity = user.FavoriteCity;
+            }
+            else
+            {
+                favoriteCity = loggedUser.FavoriteCity;
+            }
+
+            return RedirectToAction("Index", "Home", new { City = favoriteCity });
         }
     }
 }

@@ -90,6 +90,9 @@
     <Compile Include="OpenWeatherApiWeatherService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CacheRepository.cs" />
+    <Compile Include="UserContext.cs" />
+    <Compile Include="UserRepository.cs" />
+    <Compile Include="UserService.cs" />
     <Compile Include="WeatherResponseFormatter.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -26,10 +26,12 @@ namespace WarmSide.WebApi
             UnityContainer.RegisterType<ICacheServiceConfig, CityWeatherServiceConfiguration>(new ContainerControlledLifetimeManager());
             UnityContainer.RegisterType<IWeatherService, OpenWeatherApiWeatherService>();
             UnityContainer.RegisterType<ICacheService, CacheService>();
+            UnityContainer.RegisterType<IUserService, UserService>();
             UnityContainer.RegisterType<IHttpClientFactory, HttpClientFactory>();
             UnityContainer.RegisterType<IWeatherResponseFormatter, WeatherResponseFormatter>();
             UnityContainer.RegisterType<IPhotoService, FlickerApiPhotoService>();
             UnityContainer.RegisterType<ICacheRepository, CacheRepository>();
+            UnityContainer.RegisterType<IUserRepository, UserRepository>();
         }
     }
 }
