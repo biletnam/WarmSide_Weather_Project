@@ -170,7 +170,6 @@
     <Compile Include="Interfaces\IHttpClientFactory.cs" />
     <Compile Include="Models\AuthViewModel.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserPreferences.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UserManager.cs" />
@@ -182,6 +181,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Home\Settings.cshtml" />
+    <Content Include="Views\Shared\_ServiceLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

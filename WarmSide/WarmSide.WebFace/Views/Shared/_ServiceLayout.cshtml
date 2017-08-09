@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" initial-scale=1.0 />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        <div class="background" style="background-image: url('../../LoginWallpaper.jpg');">
+            <div class="authLogo">
+                <span class="header">
+                    <img src="~/siteIcon.gif">
+                    <label class="headerText">WarmSide Weather Portal</label>
+                </span>
+            </div>
+            @RenderBody()
+            <script src="~/Scripts/libs/jquery-3.2.1.js"></script>
+            <script src="~/Scripts/libs/angular.js"></script>
+            <script src="~/Scripts/app/weatherApp.module.js"></script>
+            <script src="~/Scripts/app/weatherApp-backImg.directive.js"></script>
+            <script src="~/Scripts/app/weatherApp-data.service.js"></script>
+            <script src="~/Scripts/app/weatherApp.controller.js"></script>
+        </div>
+    </div>
+</body>
+</html>

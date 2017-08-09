@@ -10,7 +10,7 @@
         vm.weatherForecast = {};
         vm.iconUri = '';
         vm.iconBaseUri = serverConfig.weatherIconBaseUri;
-        vm.currentCity = 'Los Angeles';
+        vm.currentCity;
         vm.forecastDays = [];
         vm.dayWeatherForecast = [];
         vm.cityPhotoApiUri = serverConfig.serverUrl + ':' + serverConfig.port + '/';
@@ -75,8 +75,5 @@
             vm.getCurrentWeather(vm.currentCity);
             vm.getWeatherForecast(vm.currentCity);
         }
-
-        vm.refreshWeather();
-
     }
 })(angular);

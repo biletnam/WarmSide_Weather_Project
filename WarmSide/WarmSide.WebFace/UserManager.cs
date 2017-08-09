@@ -56,5 +56,22 @@ namespace WarmSide.WebFace
                 return result;
             }
         }
+        
+        public async Task<bool> UpdateUser(User user)
+        {
+            string url = $"{_accountServerUri}UpdateUser";
+
+            using (var client = _httpFactory.CreateClient())
+            {
+                var response = await client.PostAsJsonAsync<User>(url, user);
+
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    return true;
+                }
+
+                return false;
+            }     
+        }
     }
 }

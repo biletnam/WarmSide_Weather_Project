@@ -33,7 +33,7 @@ namespace WarmSide.WebFace.Controllers
         public ActionResult Logout()
         {
             Request.GetOwinContext().Authentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", null);
         }
 
         private class ChallengeResult : HttpUnauthorizedResult
@@ -56,13 +56,12 @@ namespace WarmSide.WebFace.Controllers
 
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            string favoriteCity;
-
             var userManager = new UserManager(@"http://localhost:50798/", new HttpClientFactory());
 
             var context = (ClaimsPrincipal)Request.GetOwinContext().Request.User;
 
             string userId = (from c in context.Claims where c.Type == ClaimTypes.NameIdentifier select c.Value).FirstOrDefault();
+
             var loggedUser = await userManager.FindUserById(userId);
 
             if (loggedUser == null)
@@ -77,14 +76,10 @@ namespace WarmSide.WebFace.Controllers
                     return new HttpStatusCodeResult(500);
                 }
 
-                favoriteCity = user.FavoriteCity;
-            }
-            else
-            {
-                favoriteCity = loggedUser.FavoriteCity;
+                loggedUser = user;
             }
 
-            return RedirectToAction("Index", "Home", new { City = favoriteCity });
+            return RedirectToAction("Index", "Home", loggedUser);
         }
     }
 }

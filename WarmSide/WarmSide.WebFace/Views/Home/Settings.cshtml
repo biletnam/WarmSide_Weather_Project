@@ -1,0 +1,26 @@
+﻿@model WarmSide.WebFace.Models.User
+
+@{
+    Layout = "~/Views/Shared/_ServiceLayout.cshtml";
+}
+
+@using (Html.BeginForm("Settings", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+{
+    @Html.LabelFor(m => m.Email, new { @class = "authLabel" });
+    @Html.TextBoxFor(m => m.Email, new { @class = "authTextBox" })
+    <br>
+    @Html.ValidationMessageFor(m => m.Email, "Email is required", new { @class = "authValidationLabel" })<br />
+
+    @Html.LabelFor(m => m.FavoriteCity, new { @class = "authLabel" });
+    @Html.TextBoxFor(m => m.FavoriteCity, new { @class = "authTextBox" })
+    @Html.HiddenFor(m => m.IsGoogle)
+    @Html.HiddenFor(m => m.UserID)
+    <br>
+    @Html.ValidationMessageFor(m => m.FavoriteCity, "Please enter favorite city", new { @class = "authValidationLabel" })
+
+    <div>
+        <span>
+            <input type="submit" value="Save" class="authSubmitButton btn btn-info" />
+        </span>
+    </div>
+}

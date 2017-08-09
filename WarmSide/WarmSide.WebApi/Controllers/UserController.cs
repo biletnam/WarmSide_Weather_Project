@@ -46,5 +46,19 @@ namespace WarmSide.WebApi.Controllers
 
             return NotFound();
         }
+
+        [Route("updateUser/{user}")]
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateUser(User user)
+        {
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            await _userService.UpdateUser(user);
+
+            return Ok();
+        }
     }
 }

@@ -1,12 +1,13 @@
 ﻿@using WarmSide.WebFace.Models
 
-@model UserPreferences
+@model User
 
-<div id="backgroundImage" class="background" ng-app="weatherApp" ng-controller="WeatherController as wc" ng-init="wc.currentCity='@Model.City'">
+<div id="backgroundImage" class="background" ng-app="weatherApp" ng-controller="WeatherController as wc" ng-init="wc.currentCity = '@ViewBag.FavoriteCity'; wc.refreshWeather()">
     <span style="float:right; margin: 1% 1% 1% 1%">
         @if (User.Identity.IsAuthenticated)
         {
             <label class="authUserNameLabel">Hello, @User.Identity.Name</label>
+            <a class="authLoginButton btn btn-info" href="/Home/Settings">Settings</a>
             <a class="authLoginButton btn btn-info" href="/Auth/Logout">Logout</a>
         }
         else
@@ -19,7 +20,7 @@
         <label class="h2 headerText">WarmSide Weather Portal</label>
     </span>
 
-    <div>
+    <div >
         <div>
             <label class="h3 currentLocationText">Current location is {{wc.currentCity}}</label>
             <div class="changeCityBox whiteBackground">

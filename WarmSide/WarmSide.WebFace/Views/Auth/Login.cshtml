@@ -2,14 +2,9 @@
 
 @model AuthViewModel
 
-
-<div class="background" style="background-image: url('../../LoginWallpaper.jpg');">
-    <div class="authLogo">
-        <span class="header">
-            <img src="~/siteIcon.gif">
-            <label class="headerText">WarmSide Weather Portal</label>
-        </span>
-    </div>
+@{ 
+    Layout = "~/Views/Shared/_ServiceLayout.cshtml";
+}
     <div class="authForm">
         @using (Html.BeginForm("Login", "Auth", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
         {
@@ -31,4 +26,3 @@
             </div>
         }
     </div>
-</div>
