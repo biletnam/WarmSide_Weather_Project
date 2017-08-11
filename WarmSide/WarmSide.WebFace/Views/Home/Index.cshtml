@@ -1,7 +1,4 @@
-﻿@using WarmSide.WebFace.Models
-
-@model User
-
+﻿
 <div id="backgroundImage" class="background" ng-app="weatherApp" ng-controller="WeatherController as wc" ng-init="wc.currentCity = '@ViewBag.FavoriteCity'; wc.refreshWeather()">
     <span style="float:right; margin: 1% 1% 1% 1%">
         @if (User.Identity.IsAuthenticated)

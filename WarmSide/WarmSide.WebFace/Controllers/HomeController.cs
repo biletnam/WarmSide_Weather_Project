@@ -1,28 +1,37 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WarmSide.WebFace.Models;
+using WarmSide.WebFace.Interfaces;
 
 namespace WarmSide.WebFace.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-        public ActionResult Index(User user = null)
+        private readonly IUserManager _userNamager;
+
+        public HomeController(IUserManager userManager)
+        {
+            _userNamager = userManager;
+        }
+
+        public async Task<ActionResult> Index()
         {
             ViewBag.Title = "Warm Side Weather Project";
 
-            if (user.UserID == null)
+            if (User.Identity.IsAuthenticated)
             {
-                ViewBag.FavoriteCity = "Los Angeles";
+                var currentUser = (ClaimsPrincipal)Request.GetOwinContext().Request.User;
+                var userDbProfile = await UserInfoHelpers.GetUserDbProfile(currentUser, _userNamager);
+                ViewBag.FavoriteCity = userDbProfile.FavoriteCity;
             }
             else
             {
-                ViewBag.FavoriteCity = user.FavoriteCity;
+                ViewBag.FavoriteCity = "Los Angeles";
             }
+
+
             return View();
         }
 
@@ -30,25 +39,24 @@ namespace WarmSide.WebFace.Controllers
         [HttpGet]
         public async Task<ActionResult> Settings()
         {
-            var userManager = new UserManager(@"http://localhost:50798/", new HttpClientFactory());
+            var currentUser = (ClaimsPrincipal)Request.GetOwinContext().Request.User;
+            var userDbProfile = await UserInfoHelpers.GetUserDbProfile(currentUser, _userNamager);
 
-            var context = (ClaimsPrincipal)Request.GetOwinContext().Request.User;
-
-            string userId = (from c in context.Claims where c.Type == ClaimTypes.NameIdentifier select c.Value).FirstOrDefault();
-
-            var loggedUser = await userManager.FindUserById(userId);
-
-            return View(loggedUser);
+            return View(userDbProfile);
         }
 
         [Authorize]
         [HttpPost]
         public async Task<ActionResult> Settings(User user)
         {
-            var userManager = new UserManager(@"http://localhost:50798/", new HttpClientFactory());
-            await userManager.UpdateUser(user);
+            var result = await _userNamager.UpdateUser(user);
+            if(result == false)
+            {
+                ViewBag.Error = "Unable to save settings";
+                return View();
+            }
 
-            return RedirectToAction("Index", user);
+            return RedirectToAction("Index");
         }
     }
 }

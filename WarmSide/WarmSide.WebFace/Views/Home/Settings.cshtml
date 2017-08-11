@@ -18,9 +18,11 @@
     <br>
     @Html.ValidationMessageFor(m => m.FavoriteCity, "Please enter favorite city", new { @class = "authValidationLabel" })
 
+
     <div>
         <span>
             <input type="submit" value="Save" class="authSubmitButton btn btn-info" />
         </span>
     </div>
 }
+<label class="alert-danger">@ViewBag.Error<label>

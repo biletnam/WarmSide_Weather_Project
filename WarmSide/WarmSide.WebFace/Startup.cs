@@ -14,6 +14,7 @@ namespace WarmSide.WebFace
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             AuthConfig.Configuration(app);
+            UnityConfig.Initialize();
         }
     }
 }

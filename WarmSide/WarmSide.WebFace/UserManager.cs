@@ -7,14 +7,14 @@ using System.Collections.Generic;
 
 namespace WarmSide.WebFace
 {
-    public class UserManager
+    public class UserManager : IUserManager
     {
         private readonly string _accountServerUri;
         private readonly IHttpClientFactory _httpFactory;
 
-        public UserManager(string accountServerUri, IHttpClientFactory httpFactory)
+        public UserManager(IUserManagerConfiguration configuration, IHttpClientFactory httpFactory)
         {
-            _accountServerUri = accountServerUri;
+            _accountServerUri = configuration.UserManagerUrl;
             _httpFactory = httpFactory;
         }
 

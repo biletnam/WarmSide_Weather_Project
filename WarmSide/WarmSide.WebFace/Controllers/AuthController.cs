@@ -1,17 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
 using WarmSide.WebFace.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using WarmSide.WebFace.Interfaces;
+
 
 namespace WarmSide.WebFace.Controllers
 {
     public class AuthController : Controller
     {
+        private readonly IUserManager _userManager;
+
+        public AuthController(IUserManager userManager)
+        {
+            _userManager = userManager;
+        }
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -56,30 +63,26 @@ namespace WarmSide.WebFace.Controllers
 
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var userManager = new UserManager(@"http://localhost:50798/", new HttpClientFactory());
+            var currentUser = (ClaimsPrincipal)Request.GetOwinContext().Request.User;
 
-            var context = (ClaimsPrincipal)Request.GetOwinContext().Request.User;
+            var userDbProfile = await UserInfoHelpers.GetUserDbProfile(currentUser, _userManager);
 
-            string userId = (from c in context.Claims where c.Type == ClaimTypes.NameIdentifier select c.Value).FirstOrDefault();
-
-            var loggedUser = await userManager.FindUserById(userId);
-
-            if (loggedUser == null)
+            if (userDbProfile == null)
             {
-                string userEmail = (from c in context.Claims where c.Type == ClaimTypes.Email select c.Value).FirstOrDefault();
+                string userEmail = UserInfoHelpers.GetUserClaim(ClaimTypes.Email, currentUser);
+                string userId = UserInfoHelpers.GetUserClaim(ClaimTypes.NameIdentifier, currentUser);
+
                 var user = new User() { UserID = userId, Email = userEmail, FavoriteCity = "New York", IsGoogle = true, Password = ""};
 
-                bool result = await userManager.AddUser(user);
+                bool result = await _userManager.AddUser(user);
 
                 if (!result)
                 {
                     return new HttpStatusCodeResult(500);
                 }
-
-                loggedUser = user;
             }
 
-            return RedirectToAction("Index", "Home", loggedUser);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
