@@ -3,7 +3,8 @@
     angular.module("weatherApp", []);
 
     angular.module("weatherApp").constant("serverConfig", {
-        "serverUrl": "http://warmsidewebapi.azurewebsites.net:80",
+        "serverUrl1": "http://localhost:50798",
+        "serverUrl": "http://warmsidewebapi.azurewebsites.net",
         "weatherIconBaseUri": "http://openweathermap.org/img/w/"
     })
 

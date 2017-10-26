@@ -37,7 +37,7 @@ namespace CityWeatherService.Services
             MemoryStream stream = new MemoryStream();
             BinaryFormatter formatter = new BinaryFormatter();
 
-            CacheEntry entry = new CacheEntry();// = await _repository.SelectEntry(name, notes);
+            CacheEntry entry = await _repository.SelectEntry(name, notes);
 
             if (entry != null)
             {

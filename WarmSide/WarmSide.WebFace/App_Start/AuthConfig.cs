@@ -15,7 +15,6 @@ namespace WarmSide.WebFace.App_Start
             {
                 LoginPath = new PathString("/Auth/Login"),
                 AuthenticationType = "Application Cookie",
-                CookieDomain = "http://warmsidewebface.azurewebsites.net",
                 CookieName = "WarmSideWeatherPortal"
             };
 

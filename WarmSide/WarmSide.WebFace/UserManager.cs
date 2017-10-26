@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Collections.Generic;
+using System;
 
 namespace WarmSide.WebFace
 {
@@ -20,7 +21,7 @@ namespace WarmSide.WebFace
 
         public async Task<bool> AddUser(User user)
         {
-            string url = $"{_warmSideWebApi}AddUser";
+            string url = $"{_warmSideWebApi}/AddUser";
 
             using (var client = _httpFactory.CreateClient())
             {
@@ -36,7 +37,7 @@ namespace WarmSide.WebFace
 
         public async Task<User> FindUserById(string nameIdentifier)
         {
-            string url = $"{_warmSideWebApi}GetUser/{nameIdentifier}";
+            string url = $"{_warmSideWebApi}/GetUser/{nameIdentifier}";
 
             User result;
 
@@ -59,7 +60,7 @@ namespace WarmSide.WebFace
         
         public async Task<bool> UpdateUser(User user)
         {
-            string url = $"{_warmSideWebApi}UpdateUser";
+            string url = $"{_warmSideWebApi}/UpdateUser";
 
             using (var client = _httpFactory.CreateClient())
             {
