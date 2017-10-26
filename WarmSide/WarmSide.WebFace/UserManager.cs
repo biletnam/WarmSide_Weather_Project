@@ -9,18 +9,18 @@ namespace WarmSide.WebFace
 {
     public class UserManager : IUserManager
     {
-        private readonly string _accountServerUri;
+        private readonly string _warmSideWebApi;
         private readonly IHttpClientFactory _httpFactory;
 
         public UserManager(IUserManagerConfiguration configuration, IHttpClientFactory httpFactory)
         {
-            _accountServerUri = configuration.UserManagerUrl;
+            _warmSideWebApi = configuration.WarmSideWebApiUrl;
             _httpFactory = httpFactory;
         }
 
         public async Task<bool> AddUser(User user)
         {
-            string url = $"{_accountServerUri}AddUser";
+            string url = $"{_warmSideWebApi}AddUser";
 
             using (var client = _httpFactory.CreateClient())
             {
@@ -36,7 +36,7 @@ namespace WarmSide.WebFace
 
         public async Task<User> FindUserById(string nameIdentifier)
         {
-            string url = $"{_accountServerUri}GetUser/{nameIdentifier}";
+            string url = $"{_warmSideWebApi}GetUser/{nameIdentifier}";
 
             User result;
 
@@ -59,7 +59,7 @@ namespace WarmSide.WebFace
         
         public async Task<bool> UpdateUser(User user)
         {
-            string url = $"{_accountServerUri}UpdateUser";
+            string url = $"{_warmSideWebApi}UpdateUser";
 
             using (var client = _httpFactory.CreateClient())
             {

@@ -5,7 +5,7 @@
 
     function WeatherController($scope, $http, weatherAppDataService, $filter, serverConfig) {
         var vm = this;
-        vm.serverUrl = serverConfig.serverUrl + ':' + serverConfig.port + '/';
+        vm.serverUrl = serverConfig.serverUrl + '/';
         vm.currentWeatherState = {};
         vm.weatherForecast = {};
         vm.iconUri = '';
@@ -13,7 +13,7 @@
         vm.currentCity;
         vm.forecastDays = [];
         vm.dayWeatherForecast = [];
-        vm.cityPhotoApiUri = serverConfig.serverUrl + ':' + serverConfig.port + '/';
+        vm.cityPhotoApiUri = serverConfig.serverUrl + '/';
         vm.cityImageUri = '';
 
         vm.getCurrentWeather = function(city)

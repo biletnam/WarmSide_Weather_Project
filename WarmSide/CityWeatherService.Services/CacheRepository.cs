@@ -38,8 +38,8 @@ namespace CityWeatherService.Services
             using (var db = new CacheContext())
             {
                 var result = await (from c in db.CacheEntries
-                              where c.Name == name && ((notes == null) ? true : c.Notes == notes)
-                              select c).FirstOrDefaultAsync();
+                                    where c.Name == name && ((notes == null) ? true : c.Notes == notes)
+                                    select c).FirstOrDefaultAsync();
 
                 return result;
             }

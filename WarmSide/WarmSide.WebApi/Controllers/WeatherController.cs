@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CityWeatherService.Interfaces;
 using CityWeatherService.Model;
 
+
 namespace WarmSide.WebApi.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -18,6 +19,13 @@ namespace WarmSide.WebApi.Controllers
             _weatherProvider = weatherProvider;
             _responseFormatter = new WebAPIResponseFormatter();
             _cacheService = cacheService;
+        }
+
+        [Route("{city}/test")]
+        [HttpGet]
+        public IHttpActionResult Test()
+        {
+            return Ok("Ok");
         }
 
         [Route("{city}/current")]
@@ -46,7 +54,7 @@ namespace WarmSide.WebApi.Controllers
                     await _cacheService.PutIntoCache<CurrentWeather>(response, city, "Current");
                 }
             }
-                   
+
             if (response == null)
                 return NotFound();
 

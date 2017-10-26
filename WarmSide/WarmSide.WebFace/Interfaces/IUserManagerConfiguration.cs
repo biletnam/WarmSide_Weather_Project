@@ -2,6 +2,6 @@
 {
     public interface IUserManagerConfiguration
     {
-        string UserManagerUrl { get; }
+        string WarmSideWebApiUrl { get; }
     }
 }

@@ -10,9 +10,9 @@ namespace WarmSide.WebFace
 
         public UserManagerConfiguration()
         {
-            _userManagerUrl = ConfigurationManager.AppSettings["UserManagerAPIUrl"];
+            _userManagerUrl = ConfigurationManager.AppSettings["WarmSideWebAPIUrl"];
         }
-        public string UserManagerUrl
+        public string WarmSideWebApiUrl
         {
             get
             {

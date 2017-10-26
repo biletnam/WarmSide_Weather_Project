@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.WsFederation;
 using Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace WarmSide.WebFace.App_Start
 {
@@ -18,7 +13,10 @@ namespace WarmSide.WebFace.App_Start
         {
             var cookieOptions = new CookieAuthenticationOptions
             {
-                LoginPath = new PathString("/Auth/LoginViaGoogle")
+                LoginPath = new PathString("/Auth/Login"),
+                AuthenticationType = "Application Cookie",
+                CookieDomain = "http://warmsidewebface.azurewebsites.net",
+                CookieName = "WarmSideWeatherPortal"
             };
 
             app.UseCookieAuthentication(cookieOptions);

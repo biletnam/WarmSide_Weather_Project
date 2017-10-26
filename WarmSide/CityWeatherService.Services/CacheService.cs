@@ -30,21 +30,20 @@ namespace CityWeatherService.Services
             MemoryStream stream = new MemoryStream(entry.CachedObject);
             BinaryFormatter formatter = new BinaryFormatter();
             return formatter.Deserialize(stream) as T;
-
         }
 
-        public async Task PutIntoCache<T>(T cachedObject, string name, string notes)
+        public async Task PutIntoCache<T>(T cachedObject, string name, string notes) where T : class
         {
             MemoryStream stream = new MemoryStream();
             BinaryFormatter formatter = new BinaryFormatter();
 
-            CacheEntry entry = await _repository.SelectEntry(name, notes);
+            CacheEntry entry = new CacheEntry();// = await _repository.SelectEntry(name, notes);
 
             if (entry != null)
             {
                 formatter.Serialize(stream, cachedObject);
 
-                _repository.UpdateEntry(new CacheEntry {
+                await _repository.UpdateEntry(new CacheEntry {
                     Name = name,
                     Notes = notes,
                     CachedObject = stream.ToArray()
@@ -55,7 +54,7 @@ namespace CityWeatherService.Services
 
             formatter.Serialize(stream, cachedObject);
 
-            _repository.InsertEntry(new CacheEntry() {
+            await _repository.InsertEntry(new CacheEntry() {
                 DateCreated = DateTime.Now,
                 Name = name,
                 Notes = notes,

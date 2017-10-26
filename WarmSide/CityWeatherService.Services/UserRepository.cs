@@ -1,8 +1,10 @@
 ﻿using CityWeatherService.Interfaces;
 using CityWeatherService.Model.EntityModels;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace CityWeatherService.Services
 {
@@ -20,14 +22,14 @@ namespace CityWeatherService.Services
 
         public async Task<User> FindUser(string userId)
         {
-            using (UserContext db = new UserContext())
-            {
-                var result = await (from u in db.Users
-                                    where u.UserID == userId
-                                    select u).FirstOrDefaultAsync<User>();
+                using (UserContext db = new UserContext())
+                {
+                    var result = await (from u in db.Users
+                                        where u.UserID == userId
+                                        select u).FirstOrDefaultAsync<User>();
 
-                return result;
-            }
+                    return result;
+                }
         }
 
         public async Task DeleteUser(string userId)

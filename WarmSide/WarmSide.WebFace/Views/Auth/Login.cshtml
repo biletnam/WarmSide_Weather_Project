@@ -2,27 +2,14 @@
 
 @model AuthViewModel
 
-@{ 
+@{
     Layout = "~/Views/Shared/_ServiceLayout.cshtml";
 }
-    <div class="authForm">
-        @using (Html.BeginForm("Login", "Auth", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
-        {
-            @Html.LabelFor(m => m.Username, new { @class = "authLabel" });
-            @Html.TextBoxFor(m => m.Username, new { @class = "authTextBox" })
-            <br>
-            @Html.ValidationMessageFor(m => m.Username, "Username is required", new { @class = "authValidationLabel" })<br />
-            @Html.LabelFor(m => m.Password, new { @class = "authLabel" });
-            @Html.TextBoxFor(m => m.Password, new { @class = "authTextBox" })
-            <br>
-            @Html.ValidationMessageFor(m => m.Password, "Password is required", new { @class = "authValidationLabel" })
-
-            <div>
-                <span>
-                    <input type="submit" value="Log in" class="authSubmitButton btn btn-info" />
-                    <a href="/Auth/LoginViaGoogle" class="btn btn-info authGoogleButton">Login via Google</a>
-                
-                </span>
-            </div>
-        }
+<div class="authForm">
+    <div>
+        <span>
+            <a href="/Auth/LoginViaSTS" class="btn btn-info authGoogleButton">Login via STS</a>
+            <a href="/Auth/LoginViaGoogle" class="btn btn-info authGoogleButton">Login via Google</a>
+        </span>
     </div>
+</div>

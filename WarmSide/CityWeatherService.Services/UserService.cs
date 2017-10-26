@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CityWeatherService.Model.EntityModels;
 
+
 namespace CityWeatherService.Services
 {
     public class UserService : IUserService

@@ -1,0 +1,19 @@
+﻿@using WarmSide.STS.Models
+
+@model AuthViewModel
+
+@{ 
+    Layout = "~/Views/Shared/_ServiceLayout.cshtml";
+}
+    <div class="authForm">
+        <form>
+            <label>
+                Username:
+                <input type="text" name="username" placeholder="Please enter your username"/>
+            </label>
+            <label>
+                Password:
+                <input type="password" name="password" placeholder="********"/>
+            </label>
+            </form>
+    </div>

@@ -1,0 +1,221 @@
+﻿body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    width: 100%;
+    height:100%;
+}
+
+.background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.currentWeather {
+    margin-top: 50px;
+    width: auto;
+}
+
+.headerText {
+    font-style: italic;
+    color: maroon;
+    font-kerning: normal;
+    margin-top: -90px;
+    margin-bottom: 50px;
+    margin-left: 10px;
+}
+
+.currentLocationText {
+    font-style: italic;
+    margin-left: 40px;
+    color: navy;
+    font-kerning: normal;
+}
+
+.currentWeatherDesc {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+    font-weight: 200;
+    color: darkblue;
+    float: left;
+}
+
+.changeCityBox {
+    font-style: italic;
+    margin-left: 40px;
+    color: black;
+    font-kerning: normal;
+    width: auto;
+    min-width: 300px;
+    max-width: 505px;
+    margin-right: 70em;
+    padding: 4px;
+    -webkit-box-shadow: 13px -25px 20px 32px azure;
+    -moz-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
+    background-color: azure;
+}
+
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+
+.scale-of-measurement__item {
+    display: inline-block;
+    margin: 20px;
+    text-align: center;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    width: auto;
+    border: 1px solid transparent;
+    border-radius: 17px;
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #cccccc;
+}
+
+.weatherForecast {
+    width: 60%;
+    margin: 40px;
+    background-color: azure;
+    display: inline-block;
+    -webkit-box-shadow: 1px 25px 20px 32px azure;
+    opacity: 0.84;
+    margin-top: 50px;
+}
+
+.daySelector {
+    display: inline-block;
+    margin: 10px;
+}
+
+.daySelectorButton {
+    margin: 3px;
+    width: 100px;
+}
+
+.weather-widget {
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.authLogo {
+    padding: 10% 35% 0% 35%;
+    width: auto;
+    height: auto;
+    font-size: 16px;
+}
+
+.authForm {
+    margin: 0% 24% 0% 24%;
+    width: auto;
+    height: auto;
+    max-height: 100px;
+    max-width: 1200px;
+    font-style: italic;
+    font-kerning: normal;
+    padding: 0% 10% 1% 10%;
+    -webkit-box-shadow: 13px 20px 20px 32px azure;
+    -moz-box-shadow: 12px 29px 81px 0px rgba(0,0,0,0.75);
+    background-color: azure;
+}
+
+.authSubmitButton {
+    margin: 3% 10% 0% 20%;
+    display: inline;
+}
+
+.authGoogleButton {
+    margin: 3% 10% 0% 0%;
+}
+.authLoginButton {
+    margin: 1% 0% 0% 0%;
+
+}
+
+.authLabel {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 2%;
+}
+
+.authUserNameLabel {
+    padding: 0% 0% 0% 0%;
+    width:auto;
+}
+
+.authTextBox {
+    width: 100%;
+}
+
+.authValidationLabel {
+    color: red;
+    margin: 5%;
+}
+
+@media screen and (min-width: 1000px) {
+    .headerText {
+        font-size: 25px;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    .daySelector {
+        width: 100%;
+        text-align: center;
+    }
+
+    .daySelectorButton {
+        width: 40%;
+        margin: 3px;
+    }
+
+    .weatherForecast {
+        width: 100%;
+    }
+
+    .scale-of-measurement__item {
+        display: inline-block;
+        text-align: center;
+        margin: 10px -14px;
+        width: auto;
+    }
+
+    .currentWeather {
+        width: 100%;
+    }
+
+    .pressureTitle {
+        visibility: hidden;
+    }
+
+    .scale-of-measurement {
+        width: auto;
+    }
+}

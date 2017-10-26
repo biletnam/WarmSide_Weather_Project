@@ -8,7 +8,7 @@
 
     function webAudioDataService($http, serverConfig) {
 
-        var serverUrl = serverConfig.serverUrl + ':' + serverConfig.port + '/';
+        var serverUrl = serverConfig.serverUrl + '/';
 
         var service = {
             getCurrentWeather: getCurrentWeather,
